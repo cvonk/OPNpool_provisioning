@@ -225,7 +225,13 @@ public class BLEProvisionLanding extends AppCompatActivity {
 
                 if (deviceCaps != null && !deviceCaps.contains("no_pop") && securityType == 1) {
 
-                    goToPopActivity();
+                    // skip ProofOfPosessionActivity, and go straight to WiFi scan
+                    String pop = getResources().getString(R.string.proof_of_possesion);
+                    Log.d(TAG, "POP : " + pop);
+                    provisionManager.getEspDevice().setProofOfPossession(pop);
+
+                    goToWifiScanListActivity();
+                    //goToPopActivity();
 
                 } else if (deviceCaps.contains("wifi_scan")) {
 

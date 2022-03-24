@@ -27,23 +27,23 @@ android {
             minifyEnabled false
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            resValue "string", "proof_of_possesion", "abcd1234"
+            resValue "string", "proof_of_possesion", "bqeL7mTz"  // was `abcd1234`
             resValue "string", "wifi_base_url", "192.168.4.1:80"
-            resValue "string", "wifi_device_name_prefix", "PROV_"
-            resValue "string", "ble_device_name_prefix", "PROV_"
-            buildConfigField "boolean", "isQrCodeSupported", "true"
-            buildConfigField "boolean", "isSettingsAllowed", "true"
+            resValue "string", "wifi_device_name_prefix", "POOL_"  // was `PROV_`
+            resValue "string", "ble_device_name_prefix", "POOL_"  // was `PROV_`
+            buildConfigField "boolean", "isQrCodeSupported", "false"  // was `true`
+            buildConfigField "boolean", "isSettingsAllowed", "false"
             buildConfigField "boolean", "isFilteringByPrefixAllowed", "true"
         }
 
         debug {
             debuggable true
-            resValue "string", "proof_of_possesion", "abcd1234"
+            resValue "string", "proof_of_possesion", "bqeL7mTz"  // was `abcd1234`
             resValue "string", "wifi_base_url", "192.168.4.1:80"
-            resValue "string", "wifi_device_name_prefix", "PROV_"
-            resValue "string", "ble_device_name_prefix", "PROV_"
-            buildConfigField "boolean", "isQrCodeSupported", "true"
-            buildConfigField "boolean", "isSettingsAllowed", "true"
+            resValue "string", "wifi_device_name_prefix", "POOL_"  // was `PROV_`
+            resValue "string", "ble_device_name_prefix", "POOL_"  // was `PROV_`
+            buildConfigField "boolean", "isQrCodeSupported", "false"  // was `true`
+            buildConfigField "boolean", "isSettingsAllowed", "false"
             buildConfigField "boolean", "isFilteringByPrefixAllowed", "true"
         }
     }
@@ -68,6 +68,8 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'com.github.yuriy-budiyev:code-scanner:2.1.0'
     implementation 'com.github.firdausmaulan:AVLoadingIndicatorView:2.3.0'
+
+    //implementation 'com.github.espressif:esp-idf-provisioning-android:lib-2.0.11'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

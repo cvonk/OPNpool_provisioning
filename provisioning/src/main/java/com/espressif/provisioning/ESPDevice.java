@@ -555,6 +555,52 @@ public class ESPDevice {
         }
     }
 
+    /**
+     * Send MQTT credentials to device for provisioning.
+     *
+     * @param broker            Hostname of the MQTT broker.
+     * @param passphrase        Password for the MQTT broker.
+     * @param provisionListener Listener for provisioning callbacks.
+     */
+
+    private void sendMqttConfig(final String broker, final String passphrase, final ProvisionListener provisionListener) {
+
+        //byte[] scanCommand = MessengeHelper.prepareWiFiConfigMsg(broker, passphrase);
+        byte[] scanCommand = "broker\tpassphrase".getBytes();
+
+        session.sendDataToDevice(ESPConstants.HANDLER_CUSTOM_DATA, scanCommand, new ResponseListener() {
+
+            @Override
+            public void onSuccess(byte[] returnData) {
+
+                //Constants.Status status = processWifiConfigResponse(returnData);
+                Constants.Status status = Constants.Status.Success;
+                if (provisionListener != null) {
+                    if (status != Constants.Status.Success) {
+                        provisionListener.mqttConfigFailed(new RuntimeException("Failed to send mqtt credentials to device"));
+                    } else {
+                        provisionListener.mqttConfigSent();
+                    }
+                }
+
+                if (status == Constants.Status.Success) {
+                    applyWiFiConfig();
+                } else {
+                    // disableOnlyWifiNetwork();
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                e.printStackTrace();
+                disableOnlyWifiNetwork();
+                if (provisionListener != null) {
+                    provisionListener.wifiConfigFailed(new RuntimeException("Failed to send wifi credentials to device"));
+                }
+            }
+        });
+    }
+
     private void initSession(final ResponseListener listener) {
 
         if (securityType.equals(ESPConstants.SecurityType.SECURITY_0)) {

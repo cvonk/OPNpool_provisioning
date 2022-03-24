@@ -43,8 +43,8 @@ public class ProvisionActivity extends AppCompatActivity {
     private static final String TAG = ProvisionActivity.class.getSimpleName();
 
     private TextView tvTitle, tvBack, tvCancel;
-    private ImageView tick1, tick2, tick3;
-    private ContentLoadingProgressBar progress1, progress2, progress3;
+    private ImageView tick0, tick1, tick2, tick3;
+    private ContentLoadingProgressBar progress0, progress1, progress2, progress3;
     private TextView tvErrAtStep1, tvErrAtStep2, tvErrAtStep3, tvProvError;
 
     private CardView btnOk;
@@ -114,10 +114,12 @@ public class ProvisionActivity extends AppCompatActivity {
         tvBack = findViewById(R.id.btn_back);
         tvCancel = findViewById(R.id.btn_cancel);
 
+        tick0 = findViewById(R.id.iv_tick_0);
         tick1 = findViewById(R.id.iv_tick_1);
         tick2 = findViewById(R.id.iv_tick_2);
         tick3 = findViewById(R.id.iv_tick_3);
 
+        progress0 = findViewById(R.id.prov_progress_0);
         progress1 = findViewById(R.id.prov_progress_1);
         progress2 = findViewById(R.id.prov_progress_2);
         progress3 = findViewById(R.id.prov_progress_3);
@@ -158,6 +160,40 @@ public class ProvisionActivity extends AppCompatActivity {
                         progress1.setVisibility(View.GONE);
                         tvErrAtStep1.setVisibility(View.VISIBLE);
                         tvErrAtStep1.setText(R.string.error_session_creation);
+                        tvProvError.setVisibility(View.VISIBLE);
+                        hideLoading();
+                    }
+                });
+            }
+
+            @Override
+            public void mqttConfigSent() {
+
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        tick1.setImageResource(R.drawable.ic_checkbox_on);
+                        tick1.setVisibility(View.VISIBLE);
+                        progress1.setVisibility(View.GONE);
+                        tick2.setVisibility(View.GONE);
+                        progress2.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+
+            @Override
+            public void mqttConfigFailed(Exception e) {
+
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        tick1.setImageResource(R.drawable.ic_error);
+                        tick1.setVisibility(View.VISIBLE);
+                        progress1.setVisibility(View.GONE);
+                        tvErrAtStep1.setVisibility(View.VISIBLE);
+                        tvErrAtStep1.setText(R.string.error_prov_step_1);
                         tvProvError.setVisibility(View.VISIBLE);
                         hideLoading();
                     }

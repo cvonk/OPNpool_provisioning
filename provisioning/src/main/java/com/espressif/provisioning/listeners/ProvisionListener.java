@@ -29,6 +29,18 @@ public interface ProvisionListener {
     void createSessionFailed(Exception e);
 
     /**
+     * Called when MQTT credentials successfully sent to the device.
+     */
+    void mqttConfigSent();
+
+    /**
+     * Called when MQTT credentials failed to send to the device.
+     *
+     * @param e Exception
+     */
+    void mqttConfigFailed(Exception e);
+
+    /**
      * Called when Wi-Fi credentials successfully sent to the device.
      */
     void wifiConfigSent();
