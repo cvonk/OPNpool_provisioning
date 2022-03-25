@@ -45,12 +45,13 @@ public class ProvisionActivity extends AppCompatActivity {
     private TextView tvTitle, tvBack, tvCancel;
     private ImageView tick0, tick1, tick2, tick3;
     private ContentLoadingProgressBar progress0, progress1, progress2, progress3;
-    private TextView tvErrAtStep1, tvErrAtStep2, tvErrAtStep3, tvProvError;
+    private TextView tvErrAtStep0, tvErrAtStep1, tvErrAtStep2, tvErrAtStep3, tvProvError;
 
     private CardView btnOk;
     private TextView txtOkBtn;
 
     private String ssidValue, passphraseValue = "";
+    private String mqttHostValue, mqttUserValue, mqttPasswdValue = "";
     private ESPProvisionManager provisionManager;
     private boolean isProvisioningCompleted = false;
 
@@ -63,11 +64,16 @@ public class ProvisionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ssidValue = intent.getStringExtra(AppConstants.KEY_WIFI_SSID);
         passphraseValue = intent.getStringExtra(AppConstants.KEY_WIFI_PASSWORD);
+        mqttHostValue = intent.getStringExtra(AppConstants.KEY_MQTT_HOST);
+        mqttUserValue = intent.getStringExtra(AppConstants.KEY_MQTT_USER);
+        mqttPasswdValue = intent.getStringExtra(AppConstants.KEY_MQTT_PASSWD);
+
         provisionManager = ESPProvisionManager.getInstance(getApplicationContext());
         initViews();
         EventBus.getDefault().register(this);
 
         Log.d(TAG, "Selected AP -" + ssidValue);
+        Log.d(TAG, "Selected MQTT -" + mqttHostValue);
         showLoading();
         doProvisioning();
     }
@@ -124,6 +130,7 @@ public class ProvisionActivity extends AppCompatActivity {
         progress2 = findViewById(R.id.prov_progress_2);
         progress3 = findViewById(R.id.prov_progress_3);
 
+        tvErrAtStep0 = findViewById(R.id.tv_prov_error_0);
         tvErrAtStep1 = findViewById(R.id.tv_prov_error_1);
         tvErrAtStep2 = findViewById(R.id.tv_prov_error_2);
         tvErrAtStep3 = findViewById(R.id.tv_prov_error_3);
@@ -143,10 +150,12 @@ public class ProvisionActivity extends AppCompatActivity {
 
     private void doProvisioning() {
 
-        tick1.setVisibility(View.GONE);
-        progress1.setVisibility(View.VISIBLE);
+        tick0.setVisibility(View.GONE);
+        progress0.setVisibility(View.VISIBLE);
 
-        provisionManager.getEspDevice().provision(ssidValue, passphraseValue, new ProvisionListener() {
+        provisionManager.getEspDevice().provision(ssidValue, passphraseValue, mqttHostValue,
+                                                  mqttUserValue, mqttPasswdValue,
+                                                  new ProvisionListener() {
 
             @Override
             public void createSessionFailed(Exception e) {
@@ -155,11 +164,11 @@ public class ProvisionActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        tick1.setImageResource(R.drawable.ic_error);
-                        tick1.setVisibility(View.VISIBLE);
-                        progress1.setVisibility(View.GONE);
-                        tvErrAtStep1.setVisibility(View.VISIBLE);
-                        tvErrAtStep1.setText(R.string.error_session_creation);
+                        tick0.setImageResource(R.drawable.ic_error);
+                        tick0.setVisibility(View.VISIBLE);
+                        progress0.setVisibility(View.GONE);
+                        tvErrAtStep0.setVisibility(View.VISIBLE);
+                        tvErrAtStep0.setText(R.string.error_session_creation);
                         tvProvError.setVisibility(View.VISIBLE);
                         hideLoading();
                     }
@@ -173,11 +182,11 @@ public class ProvisionActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        tick1.setImageResource(R.drawable.ic_checkbox_on);
-                        tick1.setVisibility(View.VISIBLE);
-                        progress1.setVisibility(View.GONE);
-                        tick2.setVisibility(View.GONE);
-                        progress2.setVisibility(View.VISIBLE);
+                        tick0.setImageResource(R.drawable.ic_checkbox_on);
+                        tick0.setVisibility(View.VISIBLE);
+                        progress0.setVisibility(View.GONE);
+                        tick1.setVisibility(View.GONE);
+                        progress1.setVisibility(View.VISIBLE);
                     }
                 });
             }
@@ -189,11 +198,11 @@ public class ProvisionActivity extends AppCompatActivity {
 
                     @Override
                     public void run() {
-                        tick1.setImageResource(R.drawable.ic_error);
-                        tick1.setVisibility(View.VISIBLE);
-                        progress1.setVisibility(View.GONE);
-                        tvErrAtStep1.setVisibility(View.VISIBLE);
-                        tvErrAtStep1.setText(R.string.error_prov_step_1);
+                        tick0.setImageResource(R.drawable.ic_error);
+                        tick0.setVisibility(View.VISIBLE);
+                        progress0.setVisibility(View.GONE);
+                        tvErrAtStep0.setVisibility(View.VISIBLE);
+                        tvErrAtStep0.setText(R.string.error_prov_step_1);
                         tvProvError.setVisibility(View.VISIBLE);
                         hideLoading();
                     }

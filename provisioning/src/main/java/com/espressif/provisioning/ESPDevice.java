@@ -526,9 +526,14 @@ public class ESPDevice {
      *
      * @param ssid              SSID of the Wi-Fi which is to be configure in device.
      * @param passphrase        Password of the Wi-Fi which is to be configure in device.
+     * @param mqttHost          Hostname of the MQTT broker.
+     * @param mqttUser          Username for the MQTT broker.
+     * @param mqttPasswd        Password for the MQTT broker.
      * @param provisionListener Listener for provisioning callbacks.
      */
-    public void provision(final String ssid, final String passphrase, final ProvisionListener provisionListener) {
+    public void provision(final String ssid, final String passphrase, final String mqttHost,
+                          final String mqttUser, final String mqttPasswd,
+                          final ProvisionListener provisionListener) {
 
         this.provisionListener = provisionListener;
 
@@ -538,7 +543,7 @@ public class ESPDevice {
 
                 @Override
                 public void onSuccess(byte[] returnData) {
-                    sendWiFiConfig(ssid, passphrase, provisionListener);
+                    sendMqttConfig(ssid, passphrase, mqttHost, mqttUser, mqttPasswd, provisionListener);
                 }
 
                 @Override
@@ -551,43 +556,39 @@ public class ESPDevice {
                 }
             });
         } else {
-            sendWiFiConfig(ssid, passphrase, provisionListener);
+            sendMqttConfig(ssid, passphrase, mqttHost, mqttUser, mqttPasswd, provisionListener);
         }
     }
 
     /**
      * Send MQTT credentials to device for provisioning.
      *
-     * @param broker            Hostname of the MQTT broker.
-     * @param passphrase        Password for the MQTT broker.
+     * @param ssid              SSID of the Wi-Fi which is to be configure in device.
+     * @param passphrase        Password of the Wi-Fi which is to be configure in device.
+     * @param mqttHost          Hostname of the MQTT broker.
+     * @param mqttUser          Username for the MQTT broker.
+     * @param mqttPasswd        Password for the MQTT broker.
      * @param provisionListener Listener for provisioning callbacks.
      */
 
-    private void sendMqttConfig(final String broker, final String passphrase, final ProvisionListener provisionListener) {
+    private void sendMqttConfig(final String ssid, final String passphrase, final String mqttHost,
+                                final String mqttUser, final String mqttPasswd,
+                                final ProvisionListener provisionListener) {
 
         //byte[] scanCommand = MessengeHelper.prepareWiFiConfigMsg(broker, passphrase);
-        byte[] scanCommand = "broker\tpassphrase".getBytes();
+        String mqttString = mqttHost + "\t" + mqttUser + "\t" + mqttPasswd;
+        byte[] mqttCommand = mqttString.getBytes();
 
-        session.sendDataToDevice(ESPConstants.HANDLER_CUSTOM_DATA, scanCommand, new ResponseListener() {
+        session.sendDataToDevice(ESPConstants.HANDLER_CUSTOM_DATA, mqttCommand, new ResponseListener() {
 
             @Override
             public void onSuccess(byte[] returnData) {
 
-                //Constants.Status status = processWifiConfigResponse(returnData);
-                Constants.Status status = Constants.Status.Success;
                 if (provisionListener != null) {
-                    if (status != Constants.Status.Success) {
-                        provisionListener.mqttConfigFailed(new RuntimeException("Failed to send mqtt credentials to device"));
-                    } else {
-                        provisionListener.mqttConfigSent();
-                    }
+                    provisionListener.mqttConfigSent();
                 }
-
-                if (status == Constants.Status.Success) {
-                    applyWiFiConfig();
-                } else {
-                    // disableOnlyWifiNetwork();
-                }
+                // move on to the next step
+                sendWiFiConfig(ssid, passphrase, provisionListener);
             }
 
             @Override
@@ -749,6 +750,14 @@ public class ESPDevice {
             wifiScanListener.onWifiListReceived(wifiApList);
         }
     }
+
+    /**
+     * Send WiFi credentials to device for provisioning.
+     *
+     * @param ssid              SSID of the Wi-Fi which is to be configure in device.
+     * @param passphrase        Password of the Wi-Fi which is to be configure in device.
+     * @param provisionListener Listener for provisioning callbacks.
+     */
 
     private void sendWiFiConfig(final String ssid, final String passphrase, final ProvisionListener provisionListener) {
 

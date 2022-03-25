@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/ssid_hint_text"
+            android:autofillHints="ssid"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -56,9 +57,69 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_hint_text"
+            android:autofillHints="password"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mqtt_host_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password_input_layout"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp">
+
+        <EditText
+            android:id="@+id/et_mqtt_host_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mqtt_host_hint_text"
+            android:autofillHints="mqtt_host"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mqtt_user_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mqtt_host_input_layout"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp">
+
+        <EditText
+            android:id="@+id/et_mqtt_user_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mqtt_user_hint_text"
+            android:autofillHints="mqtt_user"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/mqtt_passwd_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mqtt_user_input_layout"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/et_mqtt_passwd_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/mqtt_passwd_hint_text"
+            android:autofillHints="mqtt_passwd"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <include
         android:id="@+id/btn_next"
