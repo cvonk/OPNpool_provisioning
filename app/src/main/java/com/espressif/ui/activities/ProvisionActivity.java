@@ -43,9 +43,9 @@ public class ProvisionActivity extends AppCompatActivity {
     private static final String TAG = ProvisionActivity.class.getSimpleName();
 
     private TextView tvTitle, tvBack, tvCancel;
-    private ImageView tick0, tick1, tick2, tick3;
-    private ContentLoadingProgressBar progress0, progress1, progress2, progress3;
-    private TextView tvErrAtStep0, tvErrAtStep1, tvErrAtStep2, tvErrAtStep3, tvProvError;
+    private ImageView tick0, tick1, tick2, tick3 /*, tick4, tick5, tick6 */;
+    private ContentLoadingProgressBar progress0, progress1, progress2, progress3 /*, progress4, progress5, progress6 */;
+    private TextView tvErrAtStep0, tvErrAtStep1, tvErrAtStep2, tvErrAtStep3, tvProvError /*, tvErrAtStep4, tvErrAtStep5 */;
 
     private CardView btnOk;
     private TextView txtOkBtn;
@@ -121,16 +121,29 @@ public class ProvisionActivity extends AppCompatActivity {
         tick1 = findViewById(R.id.iv_tick_1);
         tick2 = findViewById(R.id.iv_tick_2);
         tick3 = findViewById(R.id.iv_tick_3);
-
+        /*
+        tick4 = findViewById(R.id.iv_tick_4);
+        tick5 = findViewById(R.id.iv_tick_5);
+        tick6 = findViewById(R.id.iv_tick_6);
+        */
         progress0 = findViewById(R.id.prov_progress_0);
         progress1 = findViewById(R.id.prov_progress_1);
         progress2 = findViewById(R.id.prov_progress_2);
         progress3 = findViewById(R.id.prov_progress_3);
+        /*
+        progress4 = findViewById(R.id.prov_progress_4);
+        progress5 = findViewById(R.id.prov_progress_5);
+        progress6 = findViewById(R.id.prov_progress_6);
+         */
 
         tvErrAtStep0 = findViewById(R.id.tv_prov_error_0);
         tvErrAtStep1 = findViewById(R.id.tv_prov_error_1);
         tvErrAtStep2 = findViewById(R.id.tv_prov_error_2);
         tvErrAtStep3 = findViewById(R.id.tv_prov_error_3);
+        /*
+        tvErrAtStep4 = findViewById(R.id.tv_prov_error_4);
+        tvErrAtStep5 = findViewById(R.id.tv_prov_error_5);
+         */
         tvProvError = findViewById(R.id.tv_prov_error);
 
         tvTitle.setText(R.string.title_activity_provisioning);
@@ -274,12 +287,11 @@ public class ProvisionActivity extends AppCompatActivity {
             }
 
             @Override
-            public void provisioningFailedFromDevice(final ESPConstants.ProvisionFailureReason failureReason) {
+            public void wifiConfigApplyFailedFromDevice(final ESPConstants.ProvisionFailureReason failureReason) {
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
                         switch (failureReason) {
                             case AUTH_FAILED:
                                 tvErrAtStep3.setText(R.string.error_authentication_failed);
@@ -306,35 +318,106 @@ public class ProvisionActivity extends AppCompatActivity {
             public void deviceProvisioningSuccess() {
 
                 runOnUiThread(new Runnable() {
-
                     @Override
                     public void run() {
                         isProvisioningCompleted = true;
                         tick3.setImageResource(R.drawable.ic_checkbox_on);
                         tick3.setVisibility(View.VISIBLE);
                         progress3.setVisibility(View.GONE);
+
+                        hideLoading();
+                        /*
+                        tick4.setVisibility(View.GONE);
+                        progress4.setVisibility(View.VISIBLE);
+                         */
+                    }
+                });
+            }
+
+            /*
+            @Override
+            public void mqttConfigApplied() {
+
+                runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    tick4.setImageResource(R.drawable.ic_checkbox_on);
+                    tick4.setVisibility(View.VISIBLE);
+                    progress4.setVisibility(View.GONE);
+                    tick5.setVisibility(View.GONE);
+                    progress5.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+
+            @Override
+            public void mqttConfigApplyFailed(Exception e) {
+
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        tick4.setImageResource(R.drawable.ic_error);
+                        tick4.setVisibility(View.VISIBLE);
+                        progress4.setVisibility(View.GONE);
+                        tvErrAtStep4.setVisibility(View.VISIBLE);
+                        tvErrAtStep4.setText(R.string.error_prov_step_2);
+                        tvProvError.setVisibility(View.VISIBLE);
                         hideLoading();
                     }
                 });
             }
 
             @Override
-            public void onProvisioningFailed(Exception e) {
+            public void otaUpdateApplied() {
 
                 runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        tick3.setImageResource(R.drawable.ic_error);
-                        tick3.setVisibility(View.VISIBLE);
-                        progress3.setVisibility(View.GONE);
-                        tvErrAtStep3.setVisibility(View.VISIBLE);
-                        tvErrAtStep3.setText(R.string.error_prov_step_3);
+                        tick5.setImageResource(R.drawable.ic_checkbox_on);
+                        tick5.setVisibility(View.VISIBLE);
+                        progress5.setVisibility(View.GONE);
+                        tick6.setVisibility(View.GONE);
+                        progress6.setVisibility(View.VISIBLE);
+                    }
+                });
+            }
+
+            @Override
+            public void otaUpdateApplyFailed(Exception e) {
+
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        tick5.setImageResource(R.drawable.ic_error);
+                        tick5.setVisibility(View.VISIBLE);
+                        progress5.setVisibility(View.GONE);
+                        tvErrAtStep5.setVisibility(View.VISIBLE);
+                        tvErrAtStep5.setText(R.string.error_prov_step_2);
                         tvProvError.setVisibility(View.VISIBLE);
                         hideLoading();
                     }
                 });
             }
+
+            @Override
+            public void rebootApplied() {
+
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        tick6.setImageResource(R.drawable.ic_checkbox_on);
+                        tick6.setVisibility(View.VISIBLE);
+                        progress6.setVisibility(View.GONE);
+                        hideLoading();
+                    }
+                });
+            }
+            */
         });
     }
 

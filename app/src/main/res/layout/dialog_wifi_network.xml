@@ -31,7 +31,7 @@
                 android:paddingStart="16dp"
                 android:paddingTop="18dp"
                 android:paddingBottom="18dp"
-                android:textColor="@color/color_text"
+                android:textColor="@color/color_text_input"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
                     android:paddingTop="18dp"
                     android:paddingEnd="16dp"
                     android:paddingBottom="18dp"
-                    android:textColor="@color/color_text"
+                    android:textColor="@color/color_text_input"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>

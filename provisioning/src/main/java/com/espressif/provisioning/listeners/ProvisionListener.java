@@ -65,21 +65,27 @@ public interface ProvisionListener {
     void wifiConfigApplyFailed(Exception e);
 
     /**
-     * Callback for giving provision status update.
+     * Callback for giving Wi-Fi provision status update.
      *
      * @param failureReason Failure reason received form device.
      */
-    void provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason failureReason);
+    void wifiConfigApplyFailedFromDevice(ESPConstants.ProvisionFailureReason failureReason);
 
     /**
-     * Called when device is provisioned successfully.
+     * Called when Wi-Fi is provisioned successfully.
      */
     void deviceProvisioningSuccess();
 
-    /**
-     * Called when provisioning is failed.
-     *
-     * @param e Exception
+    /*
+    void mqttConfigApplied();
+
+    void mqttConfigApplyFailed(Exception e);
+
+    void otaUpdateApplied();
+
+    void otaUpdateApplyFailed(Exception e);
+
+    void rebootApplied();
      */
-    void onProvisioningFailed(Exception e);
+
 }

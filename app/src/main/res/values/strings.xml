@@ -51,11 +51,16 @@
     <string name="prov_step_1">Sending Wi-Fi credentials</string>
     <string name="prov_step_2">Applying Wi-Fi connection</string>
     <string name="prov_step_3">Checking Wi-Fi connection</string>
+    <string name="prov_step_4">Checking MQTT connection</string>
+    <string name="prov_step_5">Downloading firmware update</string>
+    <string name="prov_step_6">Restarting device</string>
     <string name="error_session_creation">Failed to create session</string>
     <string name="error_prov_step_0">Failed to send MQTT credentials</string>
     <string name="error_prov_step_1">Failed to send Wi-Fi credentials</string>
     <string name="error_prov_step_2">Failed to apply Wi-Fi credentials</string>
-    <string name="error_prov_step_3">Failed to provisioning device</string>
+    <string name="error_prov_step_3">Failed to provisioning Wi-Fi</string>
+    <string name="error_prov_step_4">Failed to provisioning MQTT</string>
+    <string name="error_prov_step_5">Failed to download firmware</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_provision_landing">Connect to device</string>

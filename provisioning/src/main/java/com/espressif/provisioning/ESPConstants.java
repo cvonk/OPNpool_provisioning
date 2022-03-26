@@ -44,6 +44,8 @@ public class ESPConstants {
     public static final String HANDLER_PROV_SESSION = "prov-session";
     public static final String HANDLER_PROV_CONFIG = "prov-config";
     public static final String HANDLER_MQTT_CONFIG = "mqtt-config";
+    public static final String HANDLER_MQTT_STATUS = "mqtt-status";
+    public static final String HANDLER_OTA_STATUS = "ota-status";
 
     // Event types
     public static final short EVENT_DEVICE_CONNECTED = 1;

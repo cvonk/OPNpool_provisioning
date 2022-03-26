@@ -569,9 +569,7 @@ public class ESPDevice {
     private void sendMqttConfig(final String ssid, final String passphrase, final String mqttUrl,
                                 final ProvisionListener provisionListener) {
 
-        //byte[] scanCommand = MessengeHelper.prepareWiFiConfigMsg(broker, passphrase);
-        String mqttString = mqttUrl;
-        byte[] mqttCommand = mqttString.getBytes();
+        byte[] mqttCommand = mqttUrl.getBytes();
 
         session.sendDataToDevice(ESPConstants.HANDLER_MQTT_CONFIG, mqttCommand, new ResponseListener() {
 
@@ -849,13 +847,16 @@ public class ESPDevice {
                         provisionListener.deviceProvisioningSuccess();
                     }
                     session = null;
+                    /*
+                    applyMqttConfig();
+                     */
                     disableOnlyWifiNetwork();
 
                 } else if (wifiStationState == WifiConstants.WifiStationState.Disconnected) {
 
                     // Device disconnected but Provision may got success / failure
                     if (provisionListener != null) {
-                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.DEVICE_DISCONNECTED);
+                        provisionListener.wifiConfigApplyFailedFromDevice(ESPConstants.ProvisionFailureReason.DEVICE_DISCONNECTED);
                     }
                     session = null;
                     disableOnlyWifiNetwork();
@@ -869,20 +870,20 @@ public class ESPDevice {
                         e.printStackTrace();
                         session = null;
                         disableOnlyWifiNetwork();
-                        provisionListener.onProvisioningFailed(new RuntimeException("Provisioning Failed"));
+                        provisionListener.wifiConfigApplyFailed(new RuntimeException("Provisioning Failed"));
                     }
                 } else {
 
                     if (failedReason == WifiConstants.WifiConnectFailedReason.AuthError) {
 
-                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.AUTH_FAILED);
+                        provisionListener.wifiConfigApplyFailedFromDevice(ESPConstants.ProvisionFailureReason.AUTH_FAILED);
 
                     } else if (failedReason == WifiConstants.WifiConnectFailedReason.NetworkNotFound) {
 
-                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.NETWORK_NOT_FOUND);
+                        provisionListener.wifiConfigApplyFailedFromDevice(ESPConstants.ProvisionFailureReason.NETWORK_NOT_FOUND);
 
                     } else {
-                        provisionListener.provisioningFailedFromDevice(ESPConstants.ProvisionFailureReason.UNKNOWN);
+                        provisionListener.wifiConfigApplyFailedFromDevice(ESPConstants.ProvisionFailureReason.UNKNOWN);
                     }
                     session = null;
                     disableOnlyWifiNetwork();
@@ -893,7 +894,7 @@ public class ESPDevice {
             public void onFailure(Exception e) {
                 e.printStackTrace();
                 disableOnlyWifiNetwork();
-                provisionListener.onProvisioningFailed(new RuntimeException("Provisioning Failed"));
+                provisionListener.wifiConfigApplyFailed(new RuntimeException("Provisioning Failed"));
             }
         });
     }
@@ -934,6 +935,49 @@ public class ESPDevice {
             }
         }
     }
+
+    /*
+    private void applyMqttConfig() {
+
+        byte[] command = "APPLY".getBytes();
+
+        session.sendDataToDevice(ESPConstants.HANDLER_MQTT_STATUS, command, new ResponseListener() {
+
+            @Override
+            public void onSuccess(byte[] returnData) {
+
+                if (returnData == "SUCCESS".getBytes()) {
+                    if (provisionListener != null) {
+                        provisionListener.mqttConfigApplied();
+                    }
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    applyMqttConfig();
+                    //pollForMqttConnectionStatus();
+                } else {
+                    disableOnlyWifiNetwork();
+                    if (provisionListener != null) {
+                        provisionListener.mqttConfigApplyFailed(new RuntimeException("Failed to apply MQTT credentials"));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+                e.printStackTrace();
+                disableOnlyWifiNetwork();
+                if (provisionListener != null) {
+                    provisionListener.mqttConfigApplyFailed(new RuntimeException("Failed to apply MQTT credentials"));
+                }
+            }
+        });
+    }
+    */
+
 
     private void processGetSSIDs(byte[] responseData) {
 
