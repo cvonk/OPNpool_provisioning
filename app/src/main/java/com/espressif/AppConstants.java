@@ -28,6 +28,7 @@ public class AppConstants {
     public static final String KEY_MQTT_URL = "mqtt_url";
     public static final String KEY_DEVICE_TYPES = "device_types";
     public static final String KEY_SECURITY_TYPE = "security_type";
+    public static final String KEY_POOL_URL = "pool_url";
 
     public static final String ESP_PREFERENCES = "Esp_Preferences";
 

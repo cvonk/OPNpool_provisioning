@@ -72,6 +72,11 @@
             android:label="@string/title_activity_pop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name="com.espressif.ui.activities.WebViewActivity"
+            android:label="@string/title_webview"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 
