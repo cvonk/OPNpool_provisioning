@@ -40,12 +40,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/et_mqtt_host"
+                android:id="@+id/et_mqtt_url"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:background="@drawable/bg_edit_text"
-                android:hint="@string/mqtt_host_hint_text"
+                android:hint="@string/mqtt_url_hint_text"
                 android:autofillHints="mqtt_host"
                 android:imeOptions="actionNext"
                 android:inputType="text"
@@ -58,57 +58,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mqtt_instructions_view" />
-
-            <EditText
-                android:id="@+id/et_mqtt_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:background="@drawable/bg_edit_text"
-                android:hint="@string/mqtt_user_hint_text"
-                android:autofillHints="mqtt_user"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:paddingTop="18dp"
-                android:paddingBottom="18dp"
-                android:textColor="@color/color_text"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_mqtt_host" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_mqtt_passwd_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/et_mqtt_user"
-                app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/colorAccent">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_mqtt_passwd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="@string/mqtt_passwd_hint_text"
-                    android:autofillHints="mqtt_passwd"
-                    android:imeOptions="actionGo"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:paddingStart="16dp"
-                    android:paddingTop="18dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="18dp"
-                    android:textColor="@color/color_text"
-                    android:textSize="16sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -50,8 +50,7 @@ public class ProvisionActivity extends AppCompatActivity {
     private CardView btnOk;
     private TextView txtOkBtn;
 
-    private String ssidValue, passphraseValue = "";
-    private String mqttHostValue, mqttUserValue, mqttPasswdValue = "";
+    private String ssidValue, passphraseValue, mqttUrlValue = "";
     private ESPProvisionManager provisionManager;
     private boolean isProvisioningCompleted = false;
 
@@ -64,16 +63,14 @@ public class ProvisionActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ssidValue = intent.getStringExtra(AppConstants.KEY_WIFI_SSID);
         passphraseValue = intent.getStringExtra(AppConstants.KEY_WIFI_PASSWORD);
-        mqttHostValue = intent.getStringExtra(AppConstants.KEY_MQTT_HOST);
-        mqttUserValue = intent.getStringExtra(AppConstants.KEY_MQTT_USER);
-        mqttPasswdValue = intent.getStringExtra(AppConstants.KEY_MQTT_PASSWD);
+        mqttUrlValue = intent.getStringExtra(AppConstants.KEY_MQTT_URL);
 
         provisionManager = ESPProvisionManager.getInstance(getApplicationContext());
         initViews();
         EventBus.getDefault().register(this);
 
         Log.d(TAG, "Selected AP -" + ssidValue);
-        Log.d(TAG, "Selected MQTT -" + mqttHostValue);
+        Log.d(TAG, "Selected MQTT -" + mqttUrlValue);
         showLoading();
         doProvisioning();
     }
@@ -153,8 +150,7 @@ public class ProvisionActivity extends AppCompatActivity {
         tick0.setVisibility(View.GONE);
         progress0.setVisibility(View.VISIBLE);
 
-        provisionManager.getEspDevice().provision(ssidValue, passphraseValue, mqttHostValue,
-                                                  mqttUserValue, mqttPasswdValue,
+        provisionManager.getEspDevice().provision(ssidValue, passphraseValue, mqttUrlValue,
                                                   new ProvisionListener() {
 
             @Override

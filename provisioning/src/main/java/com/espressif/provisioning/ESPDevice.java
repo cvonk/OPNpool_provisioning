@@ -526,13 +526,10 @@ public class ESPDevice {
      *
      * @param ssid              SSID of the Wi-Fi which is to be configure in device.
      * @param passphrase        Password of the Wi-Fi which is to be configure in device.
-     * @param mqttHost          Hostname of the MQTT broker.
-     * @param mqttUser          Username for the MQTT broker.
-     * @param mqttPasswd        Password for the MQTT broker.
+     * @param mqttUrl           URL of the MQTT broker.
      * @param provisionListener Listener for provisioning callbacks.
      */
-    public void provision(final String ssid, final String passphrase, final String mqttHost,
-                          final String mqttUser, final String mqttPasswd,
+    public void provision(final String ssid, final String passphrase, final String mqttUrl,
                           final ProvisionListener provisionListener) {
 
         this.provisionListener = provisionListener;
@@ -543,7 +540,7 @@ public class ESPDevice {
 
                 @Override
                 public void onSuccess(byte[] returnData) {
-                    sendMqttConfig(ssid, passphrase, mqttHost, mqttUser, mqttPasswd, provisionListener);
+                    sendMqttConfig(ssid, passphrase, mqttUrl, provisionListener);
                 }
 
                 @Override
@@ -556,7 +553,7 @@ public class ESPDevice {
                 }
             });
         } else {
-            sendMqttConfig(ssid, passphrase, mqttHost, mqttUser, mqttPasswd, provisionListener);
+            sendMqttConfig(ssid, passphrase, mqttUrl, provisionListener);
         }
     }
 
@@ -565,21 +562,18 @@ public class ESPDevice {
      *
      * @param ssid              SSID of the Wi-Fi which is to be configure in device.
      * @param passphrase        Password of the Wi-Fi which is to be configure in device.
-     * @param mqttHost          Hostname of the MQTT broker.
-     * @param mqttUser          Username for the MQTT broker.
-     * @param mqttPasswd        Password for the MQTT broker.
+     * @param mqttUrl           Hostname of the MQTT broker.
      * @param provisionListener Listener for provisioning callbacks.
      */
 
-    private void sendMqttConfig(final String ssid, final String passphrase, final String mqttHost,
-                                final String mqttUser, final String mqttPasswd,
+    private void sendMqttConfig(final String ssid, final String passphrase, final String mqttUrl,
                                 final ProvisionListener provisionListener) {
 
         //byte[] scanCommand = MessengeHelper.prepareWiFiConfigMsg(broker, passphrase);
-        String mqttString = mqttHost + "\t" + mqttUser + "\t" + mqttPasswd;
+        String mqttString = mqttUrl;
         byte[] mqttCommand = mqttString.getBytes();
 
-        session.sendDataToDevice(ESPConstants.HANDLER_CUSTOM_DATA, mqttCommand, new ResponseListener() {
+        session.sendDataToDevice(ESPConstants.HANDLER_MQTT_CONFIG, mqttCommand, new ResponseListener() {
 
             @Override
             public void onSuccess(byte[] returnData) {
@@ -869,7 +863,7 @@ public class ESPDevice {
                 } else if (wifiStationState == WifiConstants.WifiStationState.Connecting) {
 
                     try {
-                        sleep(5000);
+                        sleep(2000);
                         pollForWifiConnectionStatus();
                     } catch (InterruptedException e) {
                         e.printStackTrace();

@@ -25,9 +25,7 @@ public class AppConstants {
     public static final String KEY_STATUS_MSG = "status_msg";
     public static final String KEY_WIFI_SSID = "ssid";
     public static final String KEY_WIFI_PASSWORD = "password";
-    public static final String KEY_MQTT_HOST = "mqtt_host";
-    public static final String KEY_MQTT_USER = "mqtt_user";
-    public static final String KEY_MQTT_PASSWD = "mqtt_passwd";
+    public static final String KEY_MQTT_URL = "mqtt_url";
     public static final String KEY_DEVICE_TYPES = "device_types";
     public static final String KEY_SECURITY_TYPE = "security_type";
 

@@ -288,9 +288,7 @@ public class WiFiScanActivity extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog_mqtt_host, null);
 
-        final EditText etMqttHost = dialogView.findViewById(R.id.et_mqtt_host);
-        final EditText etMqttUser = dialogView.findViewById(R.id.et_mqtt_user);
-        final EditText etMqttPasswd = dialogView.findViewById(R.id.et_mqtt_passwd);
+        final EditText etMqttUrl = dialogView.findViewById(R.id.et_mqtt_url);
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this)
                 .setView(dialogView)
@@ -308,23 +306,16 @@ public class WiFiScanActivity extends AppCompatActivity {
 
                     @Override
                     public void onClick(View view) {
-                        String mqttHost = etMqttHost.getText().toString();
-                        String mqttUser = etMqttUser.getText().toString();
-                        String mqttPasswd = etMqttPasswd.getText().toString();
+                        String mqttUrl = etMqttUrl.getText().toString();
 
-                        if (TextUtils.isEmpty(mqttHost)) {
-                            etMqttHost.setError(getString(R.string.error_mqtt_host_empty));
-
-                        } else if (TextUtils.isEmpty(mqttUser)) {
-                            etMqttUser.setError(getString(R.string.error_mqtt_user_empty));
-
-                        } else if (TextUtils.isEmpty(mqttPasswd)) {
-                            TextInputLayout mqttPasswdLayout = dialogView.findViewById(R.id.et_mqtt_passwd_layout);
-                            mqttPasswdLayout.setError(getString(R.string.error_mqtt_passwd_empty));
+                        if (TextUtils.isEmpty(mqttUrl)) {
+                            etMqttUrl.setError(getString(R.string.error_mqtt_url_empty));
 
                         } else {
                             dialog.dismiss();
-                            goForProvisioning(ssid, password, mqttHost, mqttUser, mqttPasswd);
+
+                            // move on to the next step
+                            goForProvisioning(ssid, password, mqttUrl);
                         }
                     }
                 });
@@ -335,7 +326,7 @@ public class WiFiScanActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        goForProvisioning(ssid, password, "", "", "");
+                        goForProvisioning(ssid, password, "");
                     }
                 });
             }
@@ -344,17 +335,14 @@ public class WiFiScanActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void goForProvisioning(String ssid, String password, String mqttHost, String mqttUser,
-                                   String mqttPasswd) {
+    private void goForProvisioning(String ssid, String password, String mqttUrl) {
 
         finish();
         Intent provisionIntent = new Intent(getApplicationContext(), ProvisionActivity.class);
         provisionIntent.putExtras(getIntent());
         provisionIntent.putExtra(AppConstants.KEY_WIFI_SSID, ssid);
         provisionIntent.putExtra(AppConstants.KEY_WIFI_PASSWORD, password);
-        provisionIntent.putExtra(AppConstants.KEY_MQTT_HOST, mqttHost);
-        provisionIntent.putExtra(AppConstants.KEY_MQTT_USER, mqttUser);
-        provisionIntent.putExtra(AppConstants.KEY_MQTT_PASSWD, mqttPasswd);
+        provisionIntent.putExtra(AppConstants.KEY_MQTT_URL, mqttUrl);
         startActivity(provisionIntent);
     }
 

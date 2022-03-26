@@ -40,16 +40,16 @@
 
     <!-- Instruction Strings -->
     <string name="pop_instruction">Enter your proof of possession PIN for</string>
-    <string name="setup_instructions">To complete setup of your device %1$s, please provide your Wi-Fi and optionally MQTT credentials.</string>
-    <string name="mqtt_instructions">To use the device with HA/MQTT, please provide your MQTT credentials.</string>
-    <string name="connect_device_instruction_general">To provision your device, make sure it is turned ON. Connect your mobile phone to the Wi-Fi network with a name like PROV_XXXXXX</string>
-    <string name="connect_device_instruction_specific">To provision your device, make sure it is turned ON. Connect your mobile phone to the Wi-Fi network with the name</string>
+    <string name="setup_instructions">To complete setup of your device %1$s, please provide your Wi-Fi (and optionally MQTT) credentials.</string>
+    <string name="mqtt_instructions">To use the pool interface with Home Assistant or plain MQTT, please provide the URL to the MQTT broker.</string>
+    <string name="connect_device_instruction_general">To provision your pool interface, make sure it is turned ON. Connect your mobile phone to the Wi-Fi network with a name like PROV_XXXXXX</string>
+    <string name="connect_device_instruction_specific">To provision your pool interface, make sure it is turned ON. Connect your mobile phone to the Wi-Fi network with the name</string>
 
     <!-- Provisioning Steps Strings -->
     <string name="prov_step_0">Sending MQTT credentials</string>
     <string name="prov_step_1">Sending Wi-Fi credentials</string>
     <string name="prov_step_2">Applying Wi-Fi connection</string>
-    <string name="prov_step_3">Checking provisioning status</string>
+    <string name="prov_step_3">Checking Wi-Fi connection</string>
     <string name="error_session_creation">Failed to create session</string>
     <string name="error_prov_step_0">Failed to send MQTT credentials</string>
     <string name="error_prov_step_1">Failed to send Wi-Fi credentials</string>
@@ -65,9 +65,7 @@
     <string name="title_activity_provision_instructions">Provision Instructions</string>
     <string name="ssid_hint_text">Wi-Fi network name</string>
     <string name="password_hint_text">Wi-Fi password</string>
-    <string name="mqtt_host_hint_text">MQTT host name</string>
-    <string name="mqtt_user_hint_text">MQTT user name</string>
-    <string name="mqtt_passwd_hint_text">MQTT password</string>
+    <string name="mqtt_url_hint_text">mqtt://user:passwd@hostname.domain:1883</string>
     <string name="provision">Provision</string>
 
     <string name="success_text">Device has been successfully provisioned!</string>
@@ -99,9 +97,7 @@
     <string name="error_password_empty">Password cannot be empty</string>
     <string name="error_provisioning">Reset your board to factory defaults and retry</string>
     <string name="error_wifi_off">Please turn on Wi-Fi to connect with device.</string>
-    <string name="error_mqtt_host_empty">MQTT host name cannot be empty</string>
-    <string name="error_mqtt_user_empty">MQTT user name cannot be empty</string>
-    <string name="error_mqtt_passwd_empty">MQTT password cannot be empty</string>
+    <string name="error_mqtt_url_empty">MQTT URL cannot be empty</string>
 
     <string name="prefix">Prefix :</string>
     <string name="hint_prefix">Enter Prefix</string>
