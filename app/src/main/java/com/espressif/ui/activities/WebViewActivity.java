@@ -18,6 +18,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -28,6 +30,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.widget.ContentLoadingProgressBar;
 
@@ -36,6 +39,7 @@ import com.espressif.provisioning.DeviceConnectionEvent;
 import com.espressif.provisioning.ESPConstants;
 import com.espressif.provisioning.ESPProvisionManager;
 import com.espressif.provisioning.listeners.ProvisionListener;
+import com.espressif.wifi_provisioning.BuildConfig;
 import com.espressif.wifi_provisioning.R;
 
 import org.greenrobot.eventbus.EventBus;
@@ -52,9 +56,14 @@ public class WebViewActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        /*
         Intent intent = getIntent();
         String urlValue = intent.getStringExtra(AppConstants.KEY_POOL_URL);
+        */
+        String urlValue = "http://pool.iot.vonk/";
 
         wv1 = (WebView) findViewById(R.id.webview);
         wv1.setWebViewClient(new MyBrowser());
@@ -72,14 +81,33 @@ public class WebViewActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_webview, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_webview_provision) {
+            Intent intent = new Intent(this, EspMainActivity.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 /*
-
-
-
-
-
-
-
     private TextView tvTitle, tvBack, tvCancel;
     private ImageView tick0, tick1, tick2, tick3;
     private ContentLoadingProgressBar progress0, progress1, progress2, progress3;

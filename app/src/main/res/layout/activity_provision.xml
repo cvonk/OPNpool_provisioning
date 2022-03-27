@@ -258,7 +258,6 @@
 
                 </LinearLayout>
 
-<!--
                 <LinearLayout
                     android:id="@+id/layout_checking_mqtt_status"
                     android:layout_width="match_parent"
@@ -314,6 +313,7 @@
 
                 </LinearLayout>
 
+                <!--
                 <LinearLayout
                     android:id="@+id/layout_checking_ota_status"
                     android:layout_width="match_parent"

@@ -22,17 +22,21 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.espressif.ui.activities.EspMainActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
+            android:name="com.espressif.ui.activities.WebViewActivity"
+            android:label="@string/title_webview"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.espressif.ui.activities.EspMainActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.espressif.ui.activities.AddDeviceActivity"
             android:label="@string/title_activity_provision_landing"
@@ -70,11 +74,6 @@
         <activity
             android:name="com.espressif.ui.activities.ProofOfPossessionActivity"
             android:label="@string/title_activity_pop"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="com.espressif.ui.activities.WebViewActivity"
-            android:label="@string/title_webview"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 

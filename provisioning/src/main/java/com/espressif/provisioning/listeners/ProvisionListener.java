@@ -76,6 +76,8 @@ public interface ProvisionListener {
      */
     void deviceProvisioningSuccess();
 
+    void otaUpdateApplied();
+
     /*
     void mqttConfigApplied();
 

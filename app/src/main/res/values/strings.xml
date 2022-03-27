@@ -13,10 +13,11 @@
     <string name="title_activity_settings">Settings</string>
     <string name="title_activity_add_device">Add Device</string>
     <string name="title_mqtt_credentials">MQTT Credentials</string>
-    <string name="title_webview">WebView</string>
+    <string name="title_webview">Pool</string>
+    <string name="title_webview_provision">Provision device</string>
 
     <!-- Button Text -->
-    <string name="btn_ok">OK</string>
+    <string name="btn_ok">Connect</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_skip">Skip</string>
     <string name="btn_next">Next</string>
@@ -51,7 +52,7 @@
     <string name="prov_step_1">Sending Wi-Fi credentials</string>
     <string name="prov_step_2">Applying Wi-Fi connection</string>
     <string name="prov_step_3">Checking Wi-Fi connection</string>
-    <string name="prov_step_4">Checking MQTT connection</string>
+    <string name="prov_step_4">Waiting for OTA update and restart</string>
     <string name="prov_step_5">Downloading firmware update</string>
     <string name="prov_step_6">Restarting device</string>
     <string name="error_session_creation">Failed to create session</string>

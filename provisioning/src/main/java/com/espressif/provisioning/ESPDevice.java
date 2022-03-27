@@ -847,10 +847,10 @@ public class ESPDevice {
                         provisionListener.deviceProvisioningSuccess();
                     }
                     session = null;
+                    waitForOtaUpdate();
                     /*
-                    applyMqttConfig();
-                     */
                     disableOnlyWifiNetwork();
+                     */
 
                 } else if (wifiStationState == WifiConstants.WifiStationState.Disconnected) {
 
@@ -935,6 +935,19 @@ public class ESPDevice {
             }
         }
     }
+
+    private void waitForOtaUpdate() {
+
+        try {
+            Thread.sleep(60000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        disableOnlyWifiNetwork();
+
+        provisionListener.otaUpdateApplied();
+    }
+
 
     /*
     private void applyMqttConfig() {
