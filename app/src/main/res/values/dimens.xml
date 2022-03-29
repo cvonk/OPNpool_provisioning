@@ -1,6 +1,5 @@
 <resources>
 
-    <dimen name="activity_text_border">1dp</dimen>
     <dimen name="activity_text_radius">1dp</dimen>
 
     <dimen name="margin_32">13dp</dimen>

@@ -26,6 +26,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@drawable/bg_edit_text"
                 android:hint="@string/hint_ssid"
+                android:autofillHints="ssid"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:paddingStart="16dp"

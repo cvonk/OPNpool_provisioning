@@ -35,6 +35,8 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/bg_edit_text"
                 android:hint="@string/hint_pop"
+                android:inputType="text"
+                android:autofillHints="pop"
                 android:imeOptions="actionNext"
                 android:paddingStart="@dimen/margin_16"
                 android:paddingTop="@dimen/margin_16"

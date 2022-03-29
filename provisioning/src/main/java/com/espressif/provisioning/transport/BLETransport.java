@@ -135,11 +135,7 @@ public class BLETransport implements Transport {
     public void connect(BluetoothDevice bluetoothDevice, UUID primaryServiceUuid) {
         this.currentDevice = bluetoothDevice;
         this.serviceUuid = primaryServiceUuid.toString();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            bluetoothGatt = this.currentDevice.connectGatt(context, false, gattCallback, BluetoothDevice.TRANSPORT_LE);
-        } else {
-            bluetoothGatt = this.currentDevice.connectGatt(context, false, gattCallback);
-        }
+        bluetoothGatt = this.currentDevice.connectGatt(context, false, gattCallback, BluetoothDevice.TRANSPORT_LE);
     }
 
     /**

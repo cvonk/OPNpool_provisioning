@@ -15,6 +15,7 @@
 package com.espressif.provisioning;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.le.ScanResult;
@@ -58,7 +59,7 @@ public class ESPProvisionManager {
 
     private static final String TAG = "ESP:" + ESPProvisionManager.class.getSimpleName();
 
-    private static ESPProvisionManager provision;
+    @SuppressLint("StaticFieldLeak") private static ESPProvisionManager provision;
 
     private ESPDevice espDevice;
     private BleScanner bleScanner;

@@ -48,7 +48,7 @@
                 android:hint="@string/mqtt_url_hint_text"
                 android:autofillHints="mqtt_host"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="textUri"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:paddingTop="18dp"

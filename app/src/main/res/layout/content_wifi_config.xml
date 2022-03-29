@@ -77,7 +77,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/mqtt_url_hint_text"
             android:autofillHints="mqtt_host"
-            android:inputType="text" />
+            android:inputType="textUri" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
