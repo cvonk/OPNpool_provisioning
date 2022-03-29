@@ -2,17 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.espressif.wifi_provisioning">
 
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -22,9 +23,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.espressif.ui.activities.WebViewActivity"
+            android:name="com.coertvonk.pool.activities.MainActivity"
             android:label="@string/title_webview"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,49 +34,49 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.espressif.ui.activities.EspMainActivity"
+            android:name="com.coertvonk.pool.activities.EspMainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.espressif.ui.activities.AddDeviceActivity"
+            android:name="com.coertvonk.pool.activities.AddDeviceActivity"
             android:label="@string/title_activity_provision_landing"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.espressif.ui.activities.BLEProvisionLanding"
+            android:name="com.coertvonk.pool.activities.BLEProvisionLanding"
             android:label="@string/title_activity_connect_device"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.espressif.ui.activities.WiFiConfigActivity"
+            android:name="com.coertvonk.pool.activities.WiFiConfigActivity"
             android:label="@string/title_activity_wifi_config"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.espressif.ui.activities.ProvisionLanding"
+            android:name="com.coertvonk.pool.activities.ProvisionLanding"
             android:label="@string/title_activity_provision_landing"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.espressif.ui.activities.ProvisionActivity"
+            android:name="com.coertvonk.pool.activities.ProvisionActivity"
             android:label="@string/title_activity_provisioning"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.espressif.ui.activities.SettingsActivity"
+            android:name="com.coertvonk.pool.activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="unspecified" />
         <activity
-            android:name="com.espressif.ui.activities.WiFiScanActivity"
+            android:name="com.coertvonk.pool.activities.WiFiScanActivity"
             android:label="@string/title_activity_wifi_scan_list"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.espressif.ui.activities.ProofOfPossessionActivity"
+            android:name="com.coertvonk.pool.activities.ProofOfPossessionActivity"
             android:label="@string/title_activity_pop"
-            android:screenOrientation="portrait"
+            android:screenOrientation="unspecified"
             android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
