@@ -14,23 +14,22 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.coertvonk.pool"
+        applicationId "com.espressif.wifi_provisioning"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 6
-        versionName "2.0.11-cvonk-1.2 - ${getGitHash()}"
+        versionCode 14
+        versionName "2.0.11 - ${getGitHash()}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {
-            debugSymbolLevel = 'FULL'
-        }
     }
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             resValue "string", "proof_of_possesion", "bqeL7mTz"  // was `abcd1234`
+            resValue "string", "wifi_base_url", "192.168.4.1:80"
+            resValue "string", "wifi_device_name_prefix", "POOL_"  // was `PROV_`
             resValue "string", "ble_device_name_prefix", "POOL_"  // was `PROV_`
             buildConfigField "boolean", "isQrCodeSupported", "false"  // was `true`
             buildConfigField "boolean", "isSettingsAllowed", "false"
@@ -40,6 +39,8 @@ android {
         debug {
             debuggable true
             resValue "string", "proof_of_possesion", "bqeL7mTz"  // was `abcd1234`
+            resValue "string", "wifi_base_url", "192.168.4.1:80"
+            resValue "string", "wifi_device_name_prefix", "POOL_"  // was `PROV_`
             resValue "string", "ble_device_name_prefix", "POOL_"  // was `PROV_`
             buildConfigField "boolean", "isQrCodeSupported", "false"  // was `true`
             buildConfigField "boolean", "isSettingsAllowed", "false"
