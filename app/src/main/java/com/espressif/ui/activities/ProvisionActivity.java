@@ -108,6 +108,7 @@ public class ProvisionActivity extends AppCompatActivity {
         public void onClick(View v) {
             provisionManager.getEspDevice().disconnectDevice();
             finish();
+            goForMain();
         }
     };
 
@@ -342,6 +343,7 @@ public class ProvisionActivity extends AppCompatActivity {
                         progress4.setVisibility(View.GONE);
 
                         hideLoading();
+                        //goForMain();
                         /*
                         tick5.setVisibility(View.GONE);
                         progress5.setVisibility(View.VISIBLE);
@@ -448,6 +450,13 @@ public class ProvisionActivity extends AppCompatActivity {
 
         btnOk.setEnabled(true);
         btnOk.setAlpha(1f);
+    }
+
+    private void goForMain() {
+
+        finish();
+        Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainIntent);
     }
 
     private void showAlertForDeviceDisconnected() {

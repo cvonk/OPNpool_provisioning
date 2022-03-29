@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.espressif.ui.activities.WebViewActivity"
+            android:name="com.espressif.ui.activities.MainActivity"
             android:label="@string/title_webview"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">

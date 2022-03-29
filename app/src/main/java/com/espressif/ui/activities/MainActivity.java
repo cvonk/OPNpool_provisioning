@@ -14,63 +14,89 @@
 
 package com.espressif.ui.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.EditText;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.core.widget.ContentLoadingProgressBar;
 
-import com.espressif.AppConstants;
-import com.espressif.provisioning.DeviceConnectionEvent;
-import com.espressif.provisioning.ESPConstants;
-import com.espressif.provisioning.ESPProvisionManager;
-import com.espressif.provisioning.listeners.ProvisionListener;
-import com.espressif.wifi_provisioning.BuildConfig;
 import com.espressif.wifi_provisioning.R;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-public class WebViewActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = WebViewActivity.class.getSimpleName();
-    private WebView wv1;
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+    private class CheckUrlTask implements Callable {
+
+        String urlValue;
+
+        public CheckUrlTask(String urlValue) {
+            this.urlValue = urlValue;
+        }
+
+        public Boolean call() {
+
+            HttpURLConnection urlConnection = null;
+            Boolean ret = false;
+            try {
+                URL url = new URL(this.urlValue);
+                urlConnection = (HttpURLConnection) url.openConnection();
+                int status = urlConnection.getResponseCode();
+                if (status == HttpURLConnection.HTTP_OK) {
+                    ret = true;
+                }
+            } catch (UnknownHostException e) {
+                return false;
+            } catch (Exception e) {
+                return false;
+            }
+            return ret;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview);
+        setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*
-        Intent intent = getIntent();
-        String urlValue = intent.getStringExtra(AppConstants.KEY_POOL_URL);
-        */
-        String urlValue = "http://pool.iot.vonk/";
+        String urlValue = "http://pool.local/";
 
-        wv1 = (WebView) findViewById(R.id.webview);
-        wv1.setWebViewClient(new MyBrowser());
-        wv1.getSettings().setLoadsImagesAutomatically(true);
-        wv1.getSettings().setJavaScriptEnabled(true);
-        wv1.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
-        wv1.loadUrl(urlValue);
+        WebView webView = (WebView) findViewById(R.id.webview);
+        webView.setWebViewClient(new MyBrowser());
+        webView.getSettings().setLoadsImagesAutomatically(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+
+        CheckUrlTask checkUrlTask = new CheckUrlTask(urlValue);
+        ExecutorService executor = Executors.newFixedThreadPool(1);
+        Future<Boolean> futureTask = executor.submit(checkUrlTask);
+
+        try {
+            Boolean ret = futureTask.get();
+            if (ret) {
+                webView.loadUrl(urlValue);
+            } else {
+                webView.loadUrl("file:///android_asset/offline.html");
+            }
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private class MyBrowser extends WebViewClient {

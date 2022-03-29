@@ -335,13 +335,11 @@ public class WiFiScanActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    private void goForWebView(String ssid, String password, String mqttUrl) {
+    private void goForMain(String ssid, String password, String mqttUrl) {
 
         finish();
-        Intent webViewIntent = new Intent(getApplicationContext(), WebViewActivity.class);
-        webViewIntent.putExtras(getIntent());
-        webViewIntent.putExtra(AppConstants.KEY_POOL_URL, "http://pool.iot.vonk/");
-        startActivity(webViewIntent);
+        Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mainIntent);
     }
 
     private void goForProvisioning(String ssid, String password, String mqttUrl) {
