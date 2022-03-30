@@ -11,14 +11,14 @@ def getGitHash = { ->
 
 android {
 
-    compileSdkVersion 30
+    compileSdkVersion 31
 
     defaultConfig {
         applicationId "com.coertvonk.pool"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 9
-        versionName "v1.2 - ${getGitHash()}"
+        versionName "v1.2.2 - ${getGitHash()}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -68,8 +68,6 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'com.github.yuriy-budiyev:code-scanner:2.1.0'
     implementation 'com.github.firdausmaulan:AVLoadingIndicatorView:2.3.0'
-
-    //implementation 'com.github.espressif:esp-idf-provisioning-android:lib-2.0.11'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

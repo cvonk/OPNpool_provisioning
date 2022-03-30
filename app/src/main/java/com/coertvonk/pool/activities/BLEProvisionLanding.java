@@ -70,6 +70,8 @@ public class BLEProvisionLanding extends AppCompatActivity {
     // Request codes
     private static final int REQUEST_ENABLE_BT = 1;
     private static final int REQUEST_FINE_LOCATION = 2;
+    private static final int REQUEST_BLUETOOTH_SCAN = 3;
+    private static final int REQUEST_BLUETOOTH_CONNECT = 4;
 
     // Time out
     private static final long DEVICE_CONNECT_TIMEOUT = 20000;
@@ -145,6 +147,10 @@ public class BLEProvisionLanding extends AppCompatActivity {
         // fire an intent to display a dialog asking the user to grant permission to enable it.
         if (!bleAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                requestBluetoothConnectPermission();
+                return;
+            }
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         } else {
 
@@ -196,7 +202,9 @@ public class BLEProvisionLanding extends AppCompatActivity {
 
         switch (requestCode) {
 
-            case REQUEST_FINE_LOCATION: {
+            case REQUEST_FINE_LOCATION:
+            case REQUEST_BLUETOOTH_SCAN:
+            case REQUEST_BLUETOOTH_CONNECT: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startScan();
@@ -295,10 +303,19 @@ public class BLEProvisionLanding extends AppCompatActivity {
             requestBluetoothEnable();
             return false;
 
-        } else if (!hasLocationPermissions()) {
-
-            requestLocationPermission();
-            return false;
+        } else {
+            if (!hasLocationPermissions()) {
+                requestLocationPermission();
+                return false;
+            }
+            if (!hasBluetoothScanPermissions()) {
+                requestBluetoothScanPermission();
+                return false;
+            }
+            if (!hasBluetoothConnectPermissions()) {
+                requestBluetoothConnectPermission();
+                return false;
+            }
         }
         return true;
     }
@@ -306,6 +323,10 @@ public class BLEProvisionLanding extends AppCompatActivity {
     private void requestBluetoothEnable() {
 
         Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            requestBluetoothConnectPermission();
+            return;
+        }
         startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
         Log.d(TAG, "Requested user enables Bluetooth.");
     }
@@ -320,6 +341,32 @@ public class BLEProvisionLanding extends AppCompatActivity {
     private void requestLocationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_FINE_LOCATION);
+        }
+    }
+
+    private boolean hasBluetoothScanPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return checkSelfPermission(Manifest.permission.BLUETOOTH_SCAN) == PackageManager.PERMISSION_GRANTED;
+        }
+        return true;
+    }
+
+    private void requestBluetoothScanPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{Manifest.permission.BLUETOOTH_SCAN}, REQUEST_BLUETOOTH_SCAN);
+        }
+    }
+
+    private boolean hasBluetoothConnectPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            return checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED;
+        }
+        return true;
+    }
+
+    private void requestBluetoothConnectPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_BLUETOOTH_CONNECT);
         }
     }
 
@@ -432,6 +479,10 @@ public class BLEProvisionLanding extends AppCompatActivity {
         @Override
         public void onPeripheralFound(BluetoothDevice device, ScanResult scanResult) {
 
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                requestBluetoothConnectPermission();
+                return;
+            }
             Log.d(TAG, "====== onPeripheralFound ===== " + device.getName());
             boolean deviceExists = false;
             String serviceUuid = "";
