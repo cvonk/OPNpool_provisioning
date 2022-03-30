@@ -14,11 +14,11 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "com.espressif.wifi_provisioning"
+        applicationId "com.coertvonk.pool"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 14
-        versionName "2.0.11 - ${getGitHash()}"
+        versionCode 9
+        versionName "v1.2 - ${getGitHash()}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 

@@ -32,13 +32,6 @@
             app:frameThickness="2dp"
             app:maskColor="#77000000" />
 
-        <com.espressif.provisioning.CameraSourcePreview
-            android:id="@+id/preview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:visibility="gone" />
-
         <com.wang.avi.AVLoadingIndicatorView
             android:id="@+id/loader"
             style="@style/AVLoadingIndicatorView.Large"
