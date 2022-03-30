@@ -5,7 +5,21 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <include layout="@layout/tool_bar_main_purple" />
+    <include layout="@layout/tool_bar_main_blue" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btn_provision_device">
+
+        <ImageView
+            android:id="@+id/iv_esp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_pool_ble" />
+
+    </RelativeLayout>
 
     <FrameLayout
         android:id="@+id/ScrollView01"
@@ -86,7 +100,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tv_prov_error_1"
+                        android:id="@+id/tv_prov_error_0"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
@@ -139,7 +153,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tv_prov_error_0"
+                        android:id="@+id/tv_prov_error_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
@@ -313,7 +327,6 @@
 
                 </LinearLayout>
 
-                <!--
                 <LinearLayout
                     android:id="@+id/layout_checking_ota_status"
                     android:layout_width="match_parent"
@@ -414,7 +427,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
--->
 
             </LinearLayout>
 

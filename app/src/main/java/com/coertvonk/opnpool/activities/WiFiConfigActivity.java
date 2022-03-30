@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.coertvonk.pool.activities;
+package com.coertvonk.opnpool.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,7 +27,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.coertvonk.pool.AppConstants;
+import com.coertvonk.opnpool.AppConstants;
 import com.coertvonk.provisioning.DeviceConnectionEvent;
 import com.coertvonk.provisioning.ESPConstants;
 import com.coertvonk.provisioning.ESPProvisionManager;

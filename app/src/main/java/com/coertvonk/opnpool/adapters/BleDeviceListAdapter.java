@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.coertvonk.pool.adapters;
+package com.coertvonk.opnpool.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,7 +22,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.coertvonk.pool.models.BleDevice;
+import com.coertvonk.opnpool.models.BleDevice;
 import com.coertvonk.pool.R;
 
 import java.util.ArrayList;

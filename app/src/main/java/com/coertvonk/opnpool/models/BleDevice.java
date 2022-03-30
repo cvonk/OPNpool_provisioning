@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.coertvonk.pool.models;
+package com.coertvonk.opnpool.models;
 
 import android.bluetooth.BluetoothDevice;
 

@@ -14,7 +14,7 @@ android {
     compileSdkVersion 31
 
     defaultConfig {
-        applicationId "com.coertvonk.pool"
+        applicationId "com.coertvonk.opnpool"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 9
@@ -33,7 +33,7 @@ android {
             resValue "string", "ble_device_name_prefix", "POOL_"  // was `PROV_`
             buildConfigField "boolean", "isQrCodeSupported", "false"  // was `true`
             buildConfigField "boolean", "isSettingsAllowed", "false"
-            buildConfigField "boolean", "isFilteringByPrefixAllowed", "true"
+            buildConfigField "boolean", "isFilteringByPrefixAllowed", "false"
         }
 
         debug {
@@ -44,7 +44,7 @@ android {
             resValue "string", "ble_device_name_prefix", "POOL_"  // was `PROV_`
             buildConfigField "boolean", "isQrCodeSupported", "false"  // was `true`
             buildConfigField "boolean", "isSettingsAllowed", "false"
-            buildConfigField "boolean", "isFilteringByPrefixAllowed", "true"
+            buildConfigField "boolean", "isFilteringByPrefixAllowed", "false"
         }
     }
 

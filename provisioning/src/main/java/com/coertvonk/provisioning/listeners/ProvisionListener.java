@@ -76,9 +76,6 @@ public interface ProvisionListener {
      */
     void deviceProvisioningSuccess();
 
-    void otaUpdateApplied();
-
-    /*
     void mqttConfigApplied();
 
     void mqttConfigApplyFailed(Exception e);
@@ -88,6 +85,5 @@ public interface ProvisionListener {
     void otaUpdateApplyFailed(Exception e);
 
     void rebootApplied();
-     */
 
 }

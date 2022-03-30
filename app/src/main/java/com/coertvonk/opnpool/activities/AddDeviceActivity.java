@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.coertvonk.pool.activities;
+package com.coertvonk.opnpool.activities;
 
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
@@ -43,7 +43,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
-import com.coertvonk.pool.AppConstants;
+import com.coertvonk.opnpool.AppConstants;
 import com.coertvonk.provisioning.DeviceConnectionEvent;
 import com.coertvonk.provisioning.ESPConstants;
 import com.coertvonk.provisioning.ESPDevice;
@@ -65,6 +65,7 @@ public class AddDeviceActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 1;
     private static final int REQUEST_ACCESS_FINE_LOCATION = 2;
     private static final int REQUEST_ENABLE_BT = 3;
+    private static final int REQUEST_BLUETOOTH_CONNECT = 4;
 
     private TextView tvTitle, tvBack, tvCancel;
     private CardView btnAddManually;
@@ -244,6 +245,10 @@ public class AddDeviceActivity extends AppCompatActivity {
 
                 if (!bleAdapter.isEnabled()) {
                     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        requestBluetoothConnectPermission();
+                        return;
+                    }
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
                 } else {
                     startProvisioningFlow();
@@ -253,6 +258,12 @@ public class AddDeviceActivity extends AppCompatActivity {
             }
         }
     };
+
+    private void requestBluetoothConnectPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_BLUETOOTH_CONNECT);
+        }
+    }
 
     private View.OnClickListener cancelBtnClickListener = new View.OnClickListener() {
 

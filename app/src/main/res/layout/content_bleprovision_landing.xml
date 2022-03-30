@@ -64,13 +64,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/bluetooth_status_message"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="15dp"
         android:layout_marginBottom="10dp"
         android:text="@string/devices_title"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="20sp" />
 
     <RelativeLayout
         android:id="@+id/list_layout"

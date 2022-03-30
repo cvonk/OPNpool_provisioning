@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.coertvonk.pool.activities;
+package com.coertvonk.opnpool.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,13 +35,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.coertvonk.pool.AppConstants;
+import com.coertvonk.opnpool.AppConstants;
 import com.coertvonk.provisioning.DeviceConnectionEvent;
 import com.coertvonk.provisioning.ESPConstants;
 import com.coertvonk.provisioning.ESPProvisionManager;
 import com.coertvonk.provisioning.WiFiAccessPoint;
 import com.coertvonk.provisioning.listeners.WiFiScanListener;
-import com.coertvonk.pool.adapters.WiFiListAdapter;
+import com.coertvonk.opnpool.adapters.WiFiListAdapter;
 import com.coertvonk.pool.R;
 import com.google.android.material.textfield.TextInputLayout;
 

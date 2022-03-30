@@ -847,7 +847,7 @@ public class ESPDevice {
                         provisionListener.deviceProvisioningSuccess();
                     }
                     session = null;
-                    waitForOtaUpdate();
+                    waitForMqttConfig();
                     /*
                     disableOnlyWifiNetwork();
                      */
@@ -936,18 +936,41 @@ public class ESPDevice {
         }
     }
 
-    private void waitForOtaUpdate() {
+    private void waitForMqttConfig() {
 
         try {
-            Thread.sleep(60000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        disableOnlyWifiNetwork();
 
-        provisionListener.otaUpdateApplied();
+        provisionListener.mqttConfigApplied();
+        waitForOtaUpdate();
     }
 
+    private void waitForOtaUpdate() {
+
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        provisionListener.otaUpdateApplied();
+        waitForReboot();
+    }
+
+    private void waitForReboot() {
+
+        try {
+            Thread.sleep(20000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        provisionListener.rebootApplied();
+        disableOnlyWifiNetwork();
+    }
 
     /*
     private void applyMqttConfig() {

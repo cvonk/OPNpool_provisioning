@@ -1,4 +1,4 @@
-package com.coertvonk.pool.activities;
+package com.coertvonk.opnpool.activities;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceManager;
 
-import com.coertvonk.pool.AppConstants;
+import com.coertvonk.opnpool.AppConstants;
 import com.coertvonk.pool.R;
 
 public class SettingsActivity extends AppCompatActivity {

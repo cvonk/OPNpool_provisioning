@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.coertvonk.pool.activities;
+package com.coertvonk.opnpool.activities;
 
 import android.Manifest;
 import android.app.Activity;
@@ -46,9 +46,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 
-import com.coertvonk.pool.AppConstants;
-import com.coertvonk.pool.adapters.BleDeviceListAdapter;
-import com.coertvonk.pool.models.BleDevice;
+import com.coertvonk.opnpool.AppConstants;
+import com.coertvonk.opnpool.adapters.BleDeviceListAdapter;
+import com.coertvonk.opnpool.models.BleDevice;
 import com.coertvonk.pool.BuildConfig;
 import com.coertvonk.pool.R;
 import com.coertvonk.provisioning.DeviceConnectionEvent;

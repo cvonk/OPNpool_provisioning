@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.coertvonk.pool.activities;
+package com.coertvonk.opnpool.activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -32,7 +32,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.widget.ContentLoadingProgressBar;
 
-import com.coertvonk.pool.AppConstants;
+import com.coertvonk.opnpool.AppConstants;
 import com.coertvonk.pool.R;
 import com.coertvonk.provisioning.DeviceConnectionEvent;
 import com.coertvonk.provisioning.ESPConstants;
@@ -106,6 +106,8 @@ public class ProvisionLanding extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         switch (requestCode) {
 

@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.coertvonk.pool.activities;
+package com.coertvonk.opnpool.activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
@@ -39,8 +40,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
-import com.coertvonk.pool.AppConstants;
+import com.coertvonk.opnpool.AppConstants;
 import com.coertvonk.provisioning.ESPConstants;
 import com.coertvonk.provisioning.ESPProvisionManager;
 import com.coertvonk.pool.BuildConfig;
@@ -53,6 +55,7 @@ public class EspMainActivity extends AppCompatActivity {
     // Request codes
     private static final int REQUEST_LOCATION = 1;
     private static final int REQUEST_ENABLE_BT = 2;
+    private static final int REQUEST_BLUETOOTH_CONNECT = 3;
 
     private ESPProvisionManager provisionManager;
     private CardView btnAddDevice;
@@ -86,11 +89,11 @@ public class EspMainActivity extends AppCompatActivity {
 
         deviceType = sharedPreferences.getString(AppConstants.KEY_DEVICE_TYPES, AppConstants.DEVICE_TYPE_DEFAULT);
         if (deviceType.equals(AppConstants.DEVICE_TYPE_BLE)) {
-            ivEsp.setImageResource(R.drawable.ic_esp_ble);
+            ivEsp.setImageResource(R.drawable.ic_pool_ble);
         } else if (deviceType.equals(AppConstants.DEVICE_TYPE_SOFTAP)) {
             ivEsp.setImageResource(R.drawable.ic_esp_softap);
         } else {
-            ivEsp.setImageResource(R.drawable.ic_esp);
+            ivEsp.setImageResource(R.drawable.ic_pool);
         }
     }
 
@@ -158,7 +161,7 @@ public class EspMainActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        String appVersion = getString(R.string.app_version) + " - v" + version;
+        String appVersion = getString(R.string.app_version) + " - " + version;
         tvAppVersion.setText(appVersion);
     }
 
@@ -193,6 +196,10 @@ public class EspMainActivity extends AppCompatActivity {
 
                 if (!bleAdapter.isEnabled()) {
                     Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+                        requestBluetoothConnectPermission();
+                        return;
+                    }
                     startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
                 } else {
                     startProvisioningFlow();
@@ -200,6 +207,12 @@ public class EspMainActivity extends AppCompatActivity {
             } else {
                 startProvisioningFlow();
             }
+        }
+    }
+
+    private void requestBluetoothConnectPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(new String[]{Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_BLUETOOTH_CONNECT);
         }
     }
 

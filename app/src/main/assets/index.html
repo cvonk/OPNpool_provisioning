@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang=en>
+<head>
+    <meta charset=utf-8>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="flex-container">
+        <div>
+            <h2>
+                Welcome to OPNpool Provisioning
+            </h2>
+            <p>
+                The OPNpool device connects your pool controller to your Wi-Fi network.
+                It keeps a tab on the status of the controller, the pool pump and the chlorinator.
+                It is not only more convenient than walking over to the pool equipment, but will
+                also tell you about problems with e.g. the chlorinator or pump.
+            </p>
+            <p>
+            <div class="flex-container tight">
+                <figure>
+                    <img src="device.jpg" alt="OPNpool interface image" width="300" />
+                    <figcaption>
+                        OPNpool Device
+                    </figcaption>
+                </figure>
+            </div>
+            </p>
+            <p>
+                The device integrates with Home Assistant, and other home automation systems
+                using the MQTT protocol.
+                You can also access it through <code>http://opnpool.local</code>
+            </p>
+            <p class="important-note">
+                <span class="icon">&#8942;</span>Please provision the device using the overflow menu.
+                If your device is already provisioned and you still see this page, then make
+                sure that you are connected to the same subnet as the device.
+            </p>
+            <p>
+                To do a factory reset, pull <code>GPIO#0</code> down for 5 seconds.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

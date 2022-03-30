@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package com.coertvonk.pool.activities;
+package com.coertvonk.opnpool.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +38,7 @@ import java.util.concurrent.Future;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String urlValue = "http://opnpool.local/";
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private class CheckUrlTask implements Callable {
@@ -75,8 +77,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String urlValue = "http://pool.local/";
-
         WebView webView = (WebView) findViewById(R.id.webview);
         webView.setWebViewClient(new MyBrowser());
         webView.getSettings().setLoadsImagesAutomatically(true);
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             if (ret) {
                 webView.loadUrl(urlValue);
             } else {
-                webView.loadUrl("file:///android_asset/offline.html");
+                webView.loadUrl("file:///android_asset/index.html");
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_webview, menu);
+        getMenuInflater().inflate(R.menu.menu_overflow, menu);
         return true;
     }
 
@@ -123,9 +123,18 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_webview_provision) {
-            Intent intent = new Intent(this, EspMainActivity.class);
-            startActivity(intent);
+        switch(id) {
+            case R.id.action_main_provision: {
+                Intent intent = new Intent(this, EspMainActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.action_main_open_in_browser: {
+                Uri uri = Uri.parse(urlValue);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(Intent.createChooser(intent, "Browse with"));
+                break;
+            }
         }
 
         return super.onOptionsItemSelected(item);

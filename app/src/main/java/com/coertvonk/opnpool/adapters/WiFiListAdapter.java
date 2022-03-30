@@ -1,4 +1,4 @@
-package com.coertvonk.pool.adapters;
+package com.coertvonk.opnpool.adapters;
 
 import android.app.Activity;
 import android.content.Context;

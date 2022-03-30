@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.coertvonk.provisioningap.EspMainActivity">
     <item
-        android:id="@+id/action_webview_provision"
+        android:id="@+id/action_main_provision"
         android:orderInCategory="100"
-        android:title="@string/title_webview_provision"
+        android:title="@string/title_main_provision"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_main_open_in_browser"
+        android:orderInCategory="100"
+        android:title="@string/title_main_open_in_browser"
         app:showAsAction="never" />
 </menu>
