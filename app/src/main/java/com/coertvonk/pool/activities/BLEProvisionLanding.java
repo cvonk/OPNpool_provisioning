@@ -479,7 +479,7 @@ public class BLEProvisionLanding extends AppCompatActivity {
         @Override
         public void onPeripheralFound(BluetoothDevice device, ScanResult scanResult) {
 
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.checkSelfPermission(BLEProvisionLanding.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                 requestBluetoothConnectPermission();
                 return;
             }
