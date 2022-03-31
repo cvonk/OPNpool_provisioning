@@ -55,7 +55,7 @@
     <string name="prov_step_3">Checking Wi-Fi connection</string>
     <string name="prov_step_4">Applying MQTT credentials</string>
     <string name="prov_step_5">Downloading firmware update</string>
-    <string name="prov_step_6">Restarting device</string>
+    <string name="prov_step_6">Restarting OPNpool device</string>
     <string name="error_session_creation">Failed to create session</string>
     <string name="error_prov_step_0">Failed to send MQTT credentials</string>
     <string name="error_prov_step_1">Failed to send Wi-Fi credentials</string>

@@ -938,6 +938,48 @@ public class ESPDevice {
 
     private void waitForMqttConfig() {
 
+        byte[] command = "APPLY".getBytes();
+
+        //
+        // one of the ResponseListener doesn't get called
+        // appears like the device never receives the data
+        //
+        session.sendDataToDevice(ESPConstants.HANDLER_MQTT_STATUS, command, new ResponseListener() {
+
+            @Override
+            public void onSuccess(byte[] returnData) {
+
+                if (returnData == "SUCCESS".getBytes()) {
+                    if (provisionListener != null) {
+                        provisionListener.mqttConfigApplied();
+                    }
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    //
+                    // pollForMqttConnectionStatus();
+                    //
+                } else {
+                    disableOnlyWifiNetwork();
+                    if (provisionListener != null) {
+                        provisionListener.mqttConfigApplyFailed(new RuntimeException("Failed to apply MQTT credentials"));
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+                e.printStackTrace();
+                disableOnlyWifiNetwork();
+                if (provisionListener != null) {
+                    provisionListener.mqttConfigApplyFailed(new RuntimeException("Failed to apply MQTT credentials"));
+                }
+            }
+        });
+
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
@@ -968,52 +1010,9 @@ public class ESPDevice {
             e.printStackTrace();
         }
 
-        provisionListener.rebootApplied();
         disableOnlyWifiNetwork();
+        provisionListener.rebootApplied();
     }
-
-    /*
-    private void applyMqttConfig() {
-
-        byte[] command = "APPLY".getBytes();
-
-        session.sendDataToDevice(ESPConstants.HANDLER_MQTT_STATUS, command, new ResponseListener() {
-
-            @Override
-            public void onSuccess(byte[] returnData) {
-
-                if (returnData == "SUCCESS".getBytes()) {
-                    if (provisionListener != null) {
-                        provisionListener.mqttConfigApplied();
-                    }
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    applyMqttConfig();
-                    //pollForMqttConnectionStatus();
-                } else {
-                    disableOnlyWifiNetwork();
-                    if (provisionListener != null) {
-                        provisionListener.mqttConfigApplyFailed(new RuntimeException("Failed to apply MQTT credentials"));
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Exception e) {
-
-                e.printStackTrace();
-                disableOnlyWifiNetwork();
-                if (provisionListener != null) {
-                    provisionListener.mqttConfigApplyFailed(new RuntimeException("Failed to apply MQTT credentials"));
-                }
-            }
-        });
-    }
-    */
-
 
     private void processGetSSIDs(byte[] responseData) {
 
