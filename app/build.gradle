@@ -17,8 +17,8 @@ android {
         applicationId "com.coertvonk.opnpool"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 10
-        versionName "v1.2.2 - ${getGitHash()}"
+        versionCode 11
+        versionName "v1.2.3 - ${getGitHash()}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
