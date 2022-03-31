@@ -944,6 +944,7 @@ public class ESPDevice {
         // one of the ResponseListener doesn't get called
         // appears like the device never receives the data
         //
+/*
         session.sendDataToDevice(ESPConstants.HANDLER_MQTT_STATUS, command, new ResponseListener() {
 
             @Override
@@ -979,12 +980,13 @@ public class ESPDevice {
                 }
             }
         });
-
+*/
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        disableOnlyWifiNetwork();
 
         provisionListener.mqttConfigApplied();
         waitForOtaUpdate();
@@ -993,7 +995,7 @@ public class ESPDevice {
     private void waitForOtaUpdate() {
 
         try {
-            Thread.sleep(20000);
+            Thread.sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -1005,12 +1007,11 @@ public class ESPDevice {
     private void waitForReboot() {
 
         try {
-            Thread.sleep(20000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        disableOnlyWifiNetwork();
         provisionListener.rebootApplied();
     }
 

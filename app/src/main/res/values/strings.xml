@@ -110,13 +110,13 @@
     <string name="prefix">Prefix :</string>
     <string name="hint_prefix">Enter Prefix</string>
     <string name="hint_key">Enter PIN</string>
-    <string name="devices_title">Devices</string>
+    <string name="devices_title">Select and pair your OPNpool device</string>
     <string name="enter_device_key">Enter Your Proof Of Possession PIN</string>
     <string name="app_version">App Version</string>
     <string name="powered_by_esp">Inspired by ESPRESSIF</string>
 
     <string name="join_other_network">Join Other Network</string>
-    <string name="networks">Networks</string>
+    <string name="networks">Select a network for your device</string>
     <string name="connect_your_device">Connect to your device</string>
 
     <string name="dialog_msg_gps">Location services are disabled. Please enable them to continue</string>
