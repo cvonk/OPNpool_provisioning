@@ -113,7 +113,7 @@
     <string name="devices_title">Select and pair your OPNpool device</string>
     <string name="enter_device_key">Enter Your Proof Of Possession PIN</string>
     <string name="app_version">App Version</string>
-    <string name="powered_by_esp">Inspired by ESPRESSIF</string>
+    <string name="powered_by_esp">Coert Vonk, inspired by ESPRESSIF</string>
 
     <string name="join_other_network">Join Other Network</string>
     <string name="networks">Select a network for your device</string>

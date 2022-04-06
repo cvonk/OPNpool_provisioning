@@ -566,9 +566,12 @@ public class ESPDevice {
      * @param provisionListener Listener for provisioning callbacks.
      */
 
-    private void sendMqttConfig(final String ssid, final String passphrase, final String mqttUrl,
+    private void sendMqttConfig(final String ssid, final String passphrase, String mqttUrl,
                                 final ProvisionListener provisionListener) {
 
+        if (mqttUrl == null) {
+            mqttUrl = "null";  // sending an empty string fails
+        }
         byte[] mqttCommand = mqttUrl.getBytes();
 
         session.sendDataToDevice(ESPConstants.HANDLER_MQTT_CONFIG, mqttCommand, new ResponseListener() {

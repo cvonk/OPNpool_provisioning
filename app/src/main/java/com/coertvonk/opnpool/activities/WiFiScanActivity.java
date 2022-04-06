@@ -326,7 +326,7 @@ public class WiFiScanActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
-                        goForProvisioning(ssid, password, "");
+                        goForProvisioning(ssid, password, null);
                     }
                 });
             }
