@@ -1,5 +1,7 @@
 # Provisioning Library  
 
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 Provisioning library provides a mechanism to send network credentials and/or custom data to ESP32 (or its variants like S2, S3, C3, etc.) or ESP8266 devices.
 
 This repository contains the source code for the companion Android app for this provisioning mechanism.

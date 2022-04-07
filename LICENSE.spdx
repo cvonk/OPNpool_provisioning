@@ -1,0 +1,7 @@
+SPDXVersion: SPDX-2.1
+DataLicense: Apache-2.0
+Creator: Coert Vonk
+PackageName: OPNpool
+PackageOriginator: Coert Vonk
+PackageHomePage: https://github.com/cvonk/OPNpool/
+PackageLicenseDeclared: LICENSE
