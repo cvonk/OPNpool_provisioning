@@ -53,7 +53,6 @@ public class ProvisionActivity extends AppCompatActivity {
     private ContentLoadingProgressBar progress0, progress1, progress2, progress3, progress4, progress5, progress6;
     private ProgressBar progressbar2, progressbar3, progressbar4, progressbar5, progressbar6;
     private TextView tvErrAtStep0, tvErrAtStep1, tvErrAtStep2, tvErrAtStep3, tvProvError, tvErrAtStep4, tvErrAtStep5;
-    private Handler hdlr = new Handler();
 
     private CardView btnOk;
     private TextView txtOkBtn;
