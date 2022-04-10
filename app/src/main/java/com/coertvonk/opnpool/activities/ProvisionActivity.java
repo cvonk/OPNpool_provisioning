@@ -15,12 +15,17 @@
 
 package com.coertvonk.opnpool.activities;
 
+import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -46,7 +51,9 @@ public class ProvisionActivity extends AppCompatActivity {
     private TextView tvTitle, tvBack, tvCancel;
     private ImageView tick0, tick1, tick2, tick3, tick4, tick5, tick6;
     private ContentLoadingProgressBar progress0, progress1, progress2, progress3, progress4, progress5, progress6;
+    private ProgressBar progressbar2, progressbar3, progressbar4, progressbar5, progressbar6;
     private TextView tvErrAtStep0, tvErrAtStep1, tvErrAtStep2, tvErrAtStep3, tvProvError, tvErrAtStep4, tvErrAtStep5;
+    private Handler hdlr = new Handler();
 
     private CardView btnOk;
     private TextView txtOkBtn;
@@ -133,6 +140,11 @@ public class ProvisionActivity extends AppCompatActivity {
         progress4 = findViewById(R.id.prov_progress_4);
         progress5 = findViewById(R.id.prov_progress_5);
         progress6 = findViewById(R.id.prov_progress_6);
+        progressbar2 = findViewById(R.id.prov_progressbar_2);
+        progressbar3 = findViewById(R.id.prov_progressbar_3);
+        progressbar4 = findViewById(R.id.prov_progressbar_4);
+        progressbar5 = findViewById(R.id.prov_progressbar_5);
+        progressbar6 = findViewById(R.id.prov_progressbar_6);
 
         tvErrAtStep0 = findViewById(R.id.tv_prov_error_0);
         tvErrAtStep1 = findViewById(R.id.tv_prov_error_1);
@@ -157,7 +169,7 @@ public class ProvisionActivity extends AppCompatActivity {
     private void doProvisioning() {
 
         tick0.setVisibility(View.GONE);
-        progress0.setVisibility(View.VISIBLE);
+        progress0.setVisibility(VISIBLE);
 
         provisionManager.getEspDevice().provision(ssidValue, passphraseValue, mqttUrlValue,
                                                   new ProvisionListener() {
@@ -170,11 +182,11 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick0.setImageResource(R.drawable.ic_error);
-                        tick0.setVisibility(View.VISIBLE);
+                        tick0.setVisibility(VISIBLE);
                         progress0.setVisibility(View.GONE);
-                        tvErrAtStep0.setVisibility(View.VISIBLE);
+                        tvErrAtStep0.setVisibility(VISIBLE);
                         tvErrAtStep0.setText(R.string.error_session_creation);
-                        tvProvError.setVisibility(View.VISIBLE);
+                        tvProvError.setVisibility(VISIBLE);
                         hideLoading();
                     }
                 });
@@ -188,10 +200,10 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick0.setImageResource(R.drawable.ic_checkbox_on);
-                        tick0.setVisibility(View.VISIBLE);
+                        tick0.setVisibility(VISIBLE);
                         progress0.setVisibility(View.GONE);
                         tick1.setVisibility(View.GONE);
-                        progress1.setVisibility(View.VISIBLE);
+                        progress1.setVisibility(VISIBLE);
                     }
                 });
             }
@@ -204,11 +216,11 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick0.setImageResource(R.drawable.ic_error);
-                        tick0.setVisibility(View.VISIBLE);
+                        tick0.setVisibility(VISIBLE);
                         progress0.setVisibility(View.GONE);
-                        tvErrAtStep0.setVisibility(View.VISIBLE);
+                        tvErrAtStep0.setVisibility(VISIBLE);
                         tvErrAtStep0.setText(R.string.error_prov_step_1);
-                        tvProvError.setVisibility(View.VISIBLE);
+                        tvProvError.setVisibility(VISIBLE);
                         hideLoading();
                     }
                 });
@@ -222,10 +234,11 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick1.setImageResource(R.drawable.ic_checkbox_on);
-                        tick1.setVisibility(View.VISIBLE);
+                        tick1.setVisibility(VISIBLE);
                         progress1.setVisibility(View.GONE);
                         tick2.setVisibility(View.GONE);
-                        progress2.setVisibility(View.VISIBLE);
+                        progress2.setVisibility(VISIBLE);
+                        progressbar2.setVisibility(VISIBLE);
                     }
                 });
             }
@@ -238,14 +251,40 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick1.setImageResource(R.drawable.ic_error);
-                        tick1.setVisibility(View.VISIBLE);
+                        tick1.setVisibility(VISIBLE);
                         progress1.setVisibility(View.GONE);
-                        tvErrAtStep1.setVisibility(View.VISIBLE);
+                        tvErrAtStep1.setVisibility(VISIBLE);
                         tvErrAtStep1.setText(R.string.error_prov_step_1);
-                        tvProvError.setVisibility(View.VISIBLE);
+                        tvProvError.setVisibility(VISIBLE);
                         hideLoading();
                     }
                 });
+            }
+
+            public void moveProgressBar(ProgressBar progressbar) {
+
+                new Thread(new Runnable() {
+                    @Override public void run() {
+                        int ii = 0;
+                        int ii_max = progressbar.getMax();
+                        while (ii++ < ii_max && progressbar.getVisibility() == VISIBLE) {
+                            int finalIi = ii;
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressbar.setProgress(finalIi);
+                                }
+                            });
+
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }).start();
             }
 
             @Override
@@ -256,12 +295,21 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick2.setImageResource(R.drawable.ic_checkbox_on);
-                        tick2.setVisibility(View.VISIBLE);
+                        tick2.setVisibility(VISIBLE);
                         progress2.setVisibility(View.GONE);
+                        progressbar2.setVisibility(INVISIBLE);
                         tick3.setVisibility(View.GONE);
-                        progress3.setVisibility(View.VISIBLE);
+                        progress3.setVisibility(VISIBLE);
+                        progressbar3.setVisibility(VISIBLE);
+                        int ii_max = progressbar3.getMax();
+                        moveProgressBar(progressbar3);
                     }
                 });
+
+                new Thread(new Runnable() {
+                    public void run() {
+                    }
+                }).start();
             }
 
             @Override
@@ -272,11 +320,12 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick2.setImageResource(R.drawable.ic_error);
-                        tick2.setVisibility(View.VISIBLE);
+                        tick2.setVisibility(VISIBLE);
                         progress2.setVisibility(View.GONE);
-                        tvErrAtStep2.setVisibility(View.VISIBLE);
+                        progressbar2.setVisibility(INVISIBLE);
+                        tvErrAtStep2.setVisibility(VISIBLE);
                         tvErrAtStep2.setText(R.string.error_prov_step_2);
-                        tvProvError.setVisibility(View.VISIBLE);
+                        tvProvError.setVisibility(VISIBLE);
                         hideLoading();
                     }
                 });
@@ -301,10 +350,11 @@ public class ProvisionActivity extends AppCompatActivity {
                                 break;
                         }
                         tick3.setImageResource(R.drawable.ic_error);
-                        tick3.setVisibility(View.VISIBLE);
+                        tick3.setVisibility(VISIBLE);
                         progress3.setVisibility(View.GONE);
-                        tvErrAtStep3.setVisibility(View.VISIBLE);
-                        tvProvError.setVisibility(View.VISIBLE);
+                        progressbar3.setVisibility(INVISIBLE);
+                        tvErrAtStep3.setVisibility(VISIBLE);
+                        tvProvError.setVisibility(VISIBLE);
                         hideLoading();
                     }
                 });
@@ -318,10 +368,13 @@ public class ProvisionActivity extends AppCompatActivity {
                     public void run() {
                         isProvisioningCompleted = true;
                         tick3.setImageResource(R.drawable.ic_checkbox_on);
-                        tick3.setVisibility(View.VISIBLE);
+                        tick3.setVisibility(VISIBLE);
                         progress3.setVisibility(View.GONE);
+                        progressbar3.setVisibility(INVISIBLE);
                         tick4.setVisibility(View.GONE);
-                        progress4.setVisibility(View.VISIBLE);
+                        progress4.setVisibility(VISIBLE);
+                        progressbar4.setVisibility(VISIBLE);
+                        moveProgressBar(progressbar4);
                     }
                 });
             }
@@ -334,11 +387,14 @@ public class ProvisionActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     tick4.setImageResource(R.drawable.ic_checkbox_on);
-                    tick4.setVisibility(View.VISIBLE);
+                    tick4.setVisibility(VISIBLE);
                     progress4.setVisibility(View.GONE);
+                    progressbar4.setVisibility(INVISIBLE);
                     tick5.setVisibility(View.GONE);
-                    progress5.setVisibility(View.VISIBLE);
-                    }
+                    progress5.setVisibility(VISIBLE);
+                    progressbar5.setVisibility(VISIBLE);
+                    moveProgressBar(progressbar5);
+                }
                 });
             }
 
@@ -350,11 +406,12 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick4.setImageResource(R.drawable.ic_error);
-                        tick4.setVisibility(View.VISIBLE);
+                        tick4.setVisibility(VISIBLE);
                         progress4.setVisibility(View.GONE);
-                        tvErrAtStep4.setVisibility(View.VISIBLE);
+                        progressbar4.setVisibility(INVISIBLE);
+                        tvErrAtStep4.setVisibility(VISIBLE);
                         tvErrAtStep4.setText(R.string.error_prov_step_2);
-                        tvProvError.setVisibility(View.VISIBLE);
+                        tvProvError.setVisibility(VISIBLE);
                         hideLoading();
                     }
                 });
@@ -368,10 +425,13 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick5.setImageResource(R.drawable.ic_checkbox_on);
-                        tick5.setVisibility(View.VISIBLE);
+                        tick5.setVisibility(VISIBLE);
                         progress5.setVisibility(View.GONE);
+                        progressbar5.setVisibility(INVISIBLE);
                         tick6.setVisibility(View.GONE);
-                        progress6.setVisibility(View.VISIBLE);
+                        progress6.setVisibility(VISIBLE);
+                        progressbar6.setVisibility(VISIBLE);
+                        moveProgressBar(progressbar6);
                     }
                 });
             }
@@ -384,11 +444,12 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick5.setImageResource(R.drawable.ic_error);
-                        tick5.setVisibility(View.VISIBLE);
+                        tick5.setVisibility(VISIBLE);
                         progress5.setVisibility(View.GONE);
-                        tvErrAtStep5.setVisibility(View.VISIBLE);
+                        progressbar5.setVisibility(INVISIBLE);
+                        tvErrAtStep5.setVisibility(VISIBLE);
                         tvErrAtStep5.setText(R.string.error_prov_step_2);
-                        tvProvError.setVisibility(View.VISIBLE);
+                        tvProvError.setVisibility(VISIBLE);
                         hideLoading();
                     }
                 });
@@ -402,8 +463,9 @@ public class ProvisionActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         tick6.setImageResource(R.drawable.ic_checkbox_on);
-                        tick6.setVisibility(View.VISIBLE);
+                        tick6.setVisibility(VISIBLE);
                         progress6.setVisibility(View.GONE);
+                        progressbar6.setVisibility(INVISIBLE);
                         hideLoading();
                     }
                 });

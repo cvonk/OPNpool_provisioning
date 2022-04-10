@@ -377,11 +377,14 @@ public class WiFiScanActivity extends AppCompatActivity {
      */
     private void updateProgressAndScanBtn(boolean isScanning) {
 
+        TextView tvTitleDevices = findViewById(R.id.wifi_scan_title);
+
         if (isScanning) {
 
             progressBar.setVisibility(View.VISIBLE);
             wifiListView.setVisibility(View.GONE);
             ivRefresh.setVisibility(View.GONE);
+            tvTitleDevices.setText(R.string.networks_scan);
 
         } else {
 
@@ -389,6 +392,7 @@ public class WiFiScanActivity extends AppCompatActivity {
             wifiListView.setVisibility(View.VISIBLE);
             ivRefresh.setVisibility(View.VISIBLE);
             adapter.notifyDataSetChanged();
+            tvTitleDevices.setText(R.string.networks);
         }
     }
 

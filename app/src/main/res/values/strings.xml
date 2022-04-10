@@ -25,8 +25,8 @@
     <string name="btn_back">Back</string>
     <string name="btn_provision">Provision</string>
     <string name="btn_scan_qr_code">Scan QR Code</string>
-    <string name="btn_provision_device">Provision New Device</string>
-    <string name="btn_connect">Connect</string>
+    <string name="btn_provision_device">Continue</string>
+    <string name="btn_connect">Continue</string>
     <string name="btn_connecting">Connecting&#8230;</string>
     <string name="btn_wifi_settings">Go to Wi-Fi Settings</string>
     <string name="btn_scan_again">Scan Again</string>
@@ -110,12 +110,14 @@
     <string name="prefix">Prefix :</string>
     <string name="hint_prefix">Enter Prefix</string>
     <string name="hint_key">Enter PIN</string>
+    <string name="devices_title_scan">Scanning for OPNpool device</string>
     <string name="devices_title">Select and pair your OPNpool device</string>
     <string name="enter_device_key">Enter Your Proof Of Possession PIN</string>
     <string name="app_version">App Version</string>
     <string name="powered_by_esp">Coert Vonk, inspired by ESPRESSIF</string>
 
     <string name="join_other_network">Join Other Network</string>
+    <string name="networks_scan">Scanning for Wi-Fi networks</string>
     <string name="networks">Select a network for your device</string>
     <string name="connect_your_device">Connect to your device</string>
 

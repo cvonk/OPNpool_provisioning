@@ -17,7 +17,7 @@ android {
         applicationId "com.coertvonk.opnpool"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 12
+        versionCode 13
         versionName "v1.2.4 - ${getGitHash()}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -61,6 +61,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.preference:preference:1.1.1'
 
+    implementation 'com.google.android.material:material:1.5.0'
     implementation 'com.google.protobuf:protobuf-javalite:3.14.0'
     implementation 'com.google.crypto.tink:tink-android:1.6.1'
     implementation project(path: ':provisioning')

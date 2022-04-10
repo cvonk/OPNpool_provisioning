@@ -114,6 +114,7 @@
                     android:id="@+id/layout_sending_wifi_creds"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:orientation="vertical">
 
@@ -168,7 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="2dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -197,13 +198,32 @@
 
                         </RelativeLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/prov_step_2"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="16sp" />
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/prov_step_2"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp" />
+
+                            <ProgressBar
+                                android:id="@+id/prov_progressbar_2"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:minHeight="10dp"
+                                android:max="10"
+                                android:indeterminate="false"
+                                android:progress="1"
+                                android:visibility="invisible" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <TextView
@@ -222,7 +242,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="2dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -251,13 +271,31 @@
 
                         </RelativeLayout>
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/prov_step_3"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="16sp" />
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/prov_step_3"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp" />
+
+                            <ProgressBar
+                                android:id="@+id/prov_progressbar_3"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:minHeight="10dp"
+                                android:max="10"
+                                android:indeterminate="false"
+                                android:progress="1"
+                                android:visibility="invisible" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -277,7 +315,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="2dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -306,13 +344,31 @@
 
                         </RelativeLayout>
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/prov_step_4"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="16sp" />
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/prov_step_4"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp" />
+
+                            <ProgressBar
+                                android:id="@+id/prov_progressbar_4"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:minHeight="10dp"
+                                android:max="10"
+                                android:indeterminate="false"
+                                android:progress="1"
+                                android:visibility="invisible" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -332,7 +388,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="2dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -361,13 +417,31 @@
 
                         </RelativeLayout>
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/prov_step_5"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="16sp" />
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/prov_step_5"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp" />
+
+                            <ProgressBar
+                                android:id="@+id/prov_progressbar_5"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:minHeight="10dp"
+                                android:max="30"
+                                android:indeterminate="false"
+                                android:progress="1"
+                                android:visibility="invisible" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -387,7 +461,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginBottom="2dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -416,20 +490,37 @@
 
                         </RelativeLayout>
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="@string/prov_step_6"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="16sp" />
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:text="@string/prov_step_6"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:textSize="16sp" />
+
+                            <ProgressBar
+                                android:id="@+id/prov_progressbar_6"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:minHeight="10dp"
+                                android:max="10"
+                                android:indeterminate="false"
+                                android:progress="1"
+                                android:visibility="invisible" />
+                        </LinearLayout>
 
                     </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
-
 
             <TextView
                 android:id="@+id/tv_prov_error"

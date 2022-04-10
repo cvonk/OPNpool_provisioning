@@ -412,6 +412,8 @@ public class BLEProvisionLanding extends AppCompatActivity {
      */
     private void updateProgressAndScanBtn() {
 
+        TextView tvTitleDevices = findViewById(R.id.title_devices);
+
         if (isScanning) {
 
             btnScan.setEnabled(false);
@@ -419,6 +421,7 @@ public class BLEProvisionLanding extends AppCompatActivity {
             btnScan.setTextColor(Color.WHITE);
             progressBar.setVisibility(View.VISIBLE);
             listView.setVisibility(View.GONE);
+            tvTitleDevices.setText(R.string.devices_title_scan);
 
         } else {
 
@@ -426,6 +429,8 @@ public class BLEProvisionLanding extends AppCompatActivity {
             btnScan.setAlpha(1f);
             progressBar.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
+            tvTitleDevices.setText(R.string.devices_title);
+
         }
     }
 
