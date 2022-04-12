@@ -110,7 +110,7 @@
     <string name="prefix">Prefix :</string>
     <string name="hint_prefix">Enter Prefix</string>
     <string name="hint_key">Enter PIN</string>
-    <string name="devices_title_scan">Scanning for OPNpool device</string>
+    <string name="devices_title_scan">Scanning for OPNpool devices</string>
     <string name="devices_title">Select and pair your OPNpool device</string>
     <string name="enter_device_key">Enter Your Proof Of Possession PIN</string>
     <string name="app_version">App Version</string>
