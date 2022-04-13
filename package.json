@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "ESP-IF": "4.4",
+  }
+}
