@@ -4,6 +4,6 @@
     "description": "An Android app to provision WiFi and MQTT for OPNpool",
     "author": "Coert Vonk",
     "dependencies": {
-        "ESP-IDF": "4.4"
+        "ESPIDF": "4.4"
   }
 }
