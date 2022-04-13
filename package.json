@@ -1,5 +1,6 @@
 {
     "name": "OPNpool_provisioning",
+    "version": "v1.2.4"
     "description": "An Android app to provision WiFi and MQTT for OPNpool",
     "author": "Coert Vonk",
     "dependencies": {
