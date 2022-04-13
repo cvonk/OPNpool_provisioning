@@ -1,6 +1,6 @@
 {
   "name": "OPNpool_provisioning",
-  "version": "1.2.4"
+  "version": "1.2.4",
     "description": "An Android app to provision WiFi and MQTT for OPNpool",
   "main": "index.js",
   "scripts": {
