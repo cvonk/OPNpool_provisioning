@@ -1,6 +1,7 @@
 {
     "name": "OPNpool_provisioning",
     "description": "An Android app to provision WiFi and MQTT for OPNpool",
+    "author": "Coert Vonk",
     "dependencies": {
         "ESP-IF": "4.4"
   }
