@@ -1,13 +1,12 @@
 {
-  "name": "OPNpool_provisioning",
-  "version": "1.2.4",
-    "description": "An Android app to provision WiFi and MQTT for OPNpool",
+  "name": "node-js-sample",
+  "version": "0.2.0",
+  "description": "A sample Node.js app using Express 4",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-    "espidf": "4.4",
     "express": "^4.13.3"
   },
   "engines": {
@@ -22,10 +21,9 @@
     "heroku",
     "express"
   ],
-  "author": "Coert Vonk",
+  "author": "Mark Pundsack",
   "contributors": [
-    "Sander Vonk",
-    "Johan Vonk"
+    "Zeke Sikelianos <zeke@sikelianos.com> (http://zeke.sikelianos.com)"
   ],
-  "license": "GNUv3"
+  "license": "MIT"
 }
