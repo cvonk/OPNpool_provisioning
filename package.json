@@ -1,26 +1,14 @@
 {
   "name": "OPNpool_provision",
   "version": "1.2.4",
-  "description": "A sample Node.js app using Express 4",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
+  "description": "Android app for OPNpool provisioning",
   "dependencies": {
     "express": "^4.13.3",
-    "esp-idf": "^4.13.3"
-  },
-  "engines": {
-    "node": "4.0.0"
+    "esp-idf": "4.4"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/cvonk/OPNpool_provisioning"
   },
-  "keywords": [
-    "node",
-    "heroku",
-    "express"
-  ],
-  "author": "Coert Vonk",
+  "author": "Coert Vonk"
 }
