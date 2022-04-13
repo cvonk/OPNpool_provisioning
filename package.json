@@ -1,5 +1,6 @@
 {
     "name": "OPNpool_provisioning",
+    "description": "An Android app to provision WiFi and MQTT for OPNpool",
     "dependencies": {
         "ESP-IF": "4.4"
   }
