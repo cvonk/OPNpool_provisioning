@@ -1,5 +1,6 @@
 {
-  "dependencies": {
-    "ESP-IF": "4.4",
+    "name": "OPNpool_provisioning",
+    "dependencies": {
+        "ESP-IF": "4.4"
   }
 }
