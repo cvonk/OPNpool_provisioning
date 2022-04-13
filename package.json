@@ -1,9 +1,31 @@
 {
-    "name": "OPNpool_provisioning",
-    "version": "v1.2.4"
+  "name": "OPNpool_provisioning",
+  "version": "1.2.4"
     "description": "An Android app to provision WiFi and MQTT for OPNpool",
-    "author": "Coert Vonk",
-    "dependencies": {
-        "espidf": "4.4"
-  }
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "espidf": "4.4",
+    "express": "^4.13.3"
+  },
+  "engines": {
+    "node": "4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/heroku/node-js-sample"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Coert Vonk",
+  "contributors": [
+    "Sander Vonk",
+    "Johan Vonk"
+  ],
+  "license": "GNUv3"
 }
